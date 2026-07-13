@@ -619,7 +619,7 @@
                 <p>본 확인서는 <strong>인쇄용 서식</strong>입니다. 아래 버튼으로 인쇄 후 지참해 주세요.</p>
             </div>
             <div id="printArea" style="background:#fff;border:1px solid #e8e0e0;border-radius:14px;padding:32px;">
-                <h2 style="text-align:center;font-size:1.3rem;font-weight:800;color:#1a1a1a;margin-bottom:24px;">교육참가 확인서</h2>
+                <h2 style="text-align:center;font-size:1.7rem;font-weight:800;color:#1a1a1a;margin-bottom:24px;">교육참가 확인서</h2>
                 <table style="width:100%;border-collapse:collapse;margin-bottom:0;">
                     <tr>
                         <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;width:30%;text-align:center;color:#333;font-size:0.95rem;">소속 / 사번</td>
@@ -647,7 +647,7 @@
                     </tr>
                     <tr>
                         <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">담당자 및 연락처</td>
-                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#333;font-weight:500;">이헌정 사원 / heonjeong.lee@lgepartner.com</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#333;font-weight:500;">이헌정 / 010-2862-8177</td>
                     </tr>
                 </table>
                 <div style="text-align:center;margin-top:40px;padding-top:28px;">
@@ -845,6 +845,10 @@ async function checkSurveyHistory() {
                         <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
                             <div style="font-size:0.82rem;color:var(--lg-gray);white-space:nowrap;">📅 신청 차수</div>
                             <div style="font-size:1rem;font-weight:700;color:#1a1a2e;text-align:right;">${data.round || '-'}</div>
+                        </div>
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+                            <div style="font-size:0.82rem;color:var(--lg-gray);white-space:nowrap;">🏨 숙소 신청</div>
+                            <div style="font-size:1rem;font-weight:700;color:#1a1a2e;text-align:right;">${data.accommodation || '-'}</div>
                         </div>
                         <div style="text-align:right;margin-top:6px;">
                             <span style="font-size:0.75rem;color:#bbb;">답변 일시 · ${data.date || '-'}</span>
