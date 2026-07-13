@@ -248,6 +248,8 @@
             #surveyHistoryInput { font-size:16px !important; }
             .group-input-row { flex-direction:column !important; }
             .group-input-row button { width:100% !important; }
+            .notice-banner { flex-wrap:wrap; }
+            .notice-banner a { width:100%; justify-content:center; }
         }
         @media print {
             @page { margin: 10mm; size: A4; }
@@ -328,6 +330,14 @@
                 <div style="font-size:1rem;font-weight:700;color:var(--lg-dark);">평택 러닝센터</div>
             </div>
         </div>
+
+        <div style="background:#fffbf0;border:1px solid #ffe08a;border-radius:14px;padding:18px 20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="font-size:1.2rem;">💻</span>
+                <strong style="font-size:0.9rem;color:var(--lg-accent);">사내 노트북 준비</strong>
+            </div>
+            <p style="font-size:0.82rem;color:#7a5c00;line-height:1.6;">사내에서 제공된 노트북을 지참해 주세요. 개인 소유 PC 지참 시, 사전 방문신청을 통해 노트북 정보를 기재해 주셔야 반입이 가능합니다.</p>
+        </div>
     </div>
 </section>
 
@@ -354,8 +364,8 @@
                 <div class="survey-item">
                     <div class="survey-icon">🗣️</div>
                     <div>
-                        <h4>강의스킬 세션</h4>
-                        <p>IGM 스피치 스킬업 세션을 통해 경영사상을 조직에 전파하는 전달력을 강화합니다.</p>
+                        <h4>스킬 세션 <span style="font-size:0.72rem;color:var(--lg-gray);font-weight:600;">(선택)</span></h4>
+                        <p>스피치 스킬업 세션을 통해 경영사상을 조직에 전파하는 전달력을 강화합니다.</p>
                     </div>
                 </div>
             </div>
@@ -364,15 +374,15 @@
                 <div class="survey-item">
                     <div class="survey-icon">🎯</div>
                     <div>
-                        <h4>경영사상 이해 &amp; 리더의 언어</h4>
-                        <p>위기의 본질을 CEO 메시지·리더 관점에서 재해석하고, 팀 관점의 실행 언어로 전환합니다.</p>
+                        <h4>강사양성 Overview &amp; 일정 계획</h4>
+                        <p>CEO식 사고법 핵심요약과 학습흐름별 F/T 역할을 학습하고, 강의 일정을 계획합니다.</p>
                     </div>
                 </div>
                 <div class="survey-item">
                     <div class="survey-icon">🚀</div>
                     <div>
-                        <h4>리인벤트 2.0 실습</h4>
-                        <p>문제드러내기 → 이기는 실행 세션을 통해 강의 계획을 직접 수립합니다.</p>
+                        <h4>리인벤트 2.0 내재화 &amp; 리더 역할</h4>
+                        <p>리더의 언어·문제드러내기 실습 후, 팀 과제정의서·리더 선언문 등 결과물을 직접 작성합니다.</p>
                     </div>
                 </div>
             </div>
@@ -380,7 +390,8 @@
 
         <div class="notice-banner" style="margin-top:0;margin-bottom:28px;">
             <span class="notice-icon">📌</span>
-            <p><strong>※ A반 / B반의 시간표가 서로 다릅니다.</strong> 하단 시간표에서 본인이 속한 반을 확인 후 참석해 주세요.</p>
+            <p style="flex:1;"><strong>※ A반 / B반의 시간표가 서로 다릅니다.</strong> 우측 모바일 명찰 확인하기 버튼을 클릭하여 본인이 속한 반을 확인 후 참석해 주세요.</p>
+            <a href="https://lgehqex.github.io/26LR/DNT" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#1a1a2e;color:#fff;font-size:0.82rem;font-weight:700;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;">🪪 모바일 명찰 확인하기</a>
         </div>
 
         <div class="tt-mobile-tabs">
@@ -399,39 +410,49 @@
                     <thead><tr><th>시간</th><th>주제</th><th>주요 내용</th></tr></thead>
                     <tbody>
                         <tr>
+                            <td colspan="3" style="background:#fef5f6;font-weight:700;color:var(--lg-dark);font-size:0.88rem;padding:10px 14px;">
+                                🌅 나눔관 대강당
+                            </td>
+                        </tr>
+                        <tr>
                             <td>08:30-08:40</td>
-                            <td style="white-space:nowrap;">오리엔테이션 <span class="tt-tag tt-tag-lecture">안내</span></td>
-                            <td><span class="tt-sub">CEO 메시지(영상) · 나눔관 대강당</span></td>
+                            <td style="white-space:nowrap;">오리엔테이션</td>
+                            <td><span class="tt-sub">CEO 메시지(영상)</span></td>
                         </tr>
                         <tr>
                             <td>08:40-10:20</td>
-                            <td style="white-space:nowrap;">경영사상 이해: 위기의 본질 <span class="tt-tag tt-tag-lecture">Lecture</span></td>
+                            <td style="white-space:nowrap;">경영사상 이해: 위기의 본질</td>
                             <td><span class="tt-sub">"CEO 메시지/위기의 본질을 제대로 이해하자" · 역대 최강의 경쟁자 C-Brand · 이현진 담당</span></td>
                         </tr>
                         <tr>
                             <td>설명대체</td>
-                            <td style="white-space:nowrap;">위기의 실체 체험 <span class="tt-tag tt-tag-practice">체험</span></td>
-                            <td><span class="tt-sub">"말이 아닌 눈으로 확인하자" · C-Brand vs 자사 제품/부품 비교 전시 · 로비</span></td>
+                            <td style="white-space:nowrap;">위기의 실체 체험</td>
+                            <td><span class="tt-sub">"말이 아닌 눈으로 확인하자" · C-Brand vs 자사 제품/부품 비교 전시</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background:#fef5f6;font-weight:700;color:var(--lg-dark);font-size:0.88rem;padding:10px 14px;">
+                                🏫 채움관 201호
+                            </td>
                         </tr>
                         <tr>
                             <td>10:30-11:30</td>
-                            <td style="white-space:nowrap;">Wrap-Up <span class="tt-tag tt-tag-reflection">Wrap-Up</span></td>
-                            <td><span class="tt-sub">질의응답 · 이현진 담당 · 채움관 201호</span></td>
+                            <td style="white-space:nowrap;">Wrap-Up</td>
+                            <td><span class="tt-sub">내용 랩업 및 질의응답 · 이현진 담당</span></td>
                         </tr>
                         <tr>
                             <td>11:30-12:00</td>
-                            <td style="white-space:nowrap;">일정 <span class="tt-tag tt-tag-discussion">Workshop</span></td>
-                            <td><span class="tt-sub">강의 일정 계획 수립 · 배성심 팀장 · 채움관 201호</span></td>
+                            <td style="white-space:nowrap;">일정 계획</td>
+                            <td><span class="tt-sub">강의 일정 계획 수립 · 배성심 팀장</span></td>
                         </tr>
                         <tr class="is-break">
                             <td>12:00-13:00</td>
-                            <td style="white-space:nowrap;">중식 <span class="tt-tag tt-tag-meal">Meal</span><br><span class="tt-sub">HOUSE 1958</span></td>
-                            <td><span class="tt-sub">HOUSE 1958 스페셜(능이버섯보양탕) · 참석자 전원 · 임영훈 담당</span></td>
+                            <td style="white-space:nowrap;">중식</td>
+                            <td><span class="tt-sub">HOUSE1958 스페셜 (능이버섯보양탕)</span></td>
                         </tr>
                         <tr>
                             <td>13:00-15:00</td>
-                            <td style="white-space:nowrap;">강의스킬 세션 <span class="tt-tag tt-tag-practice">Hands-on</span></td>
-                            <td><span class="tt-sub">스피치 스킬업 · IGM · 채움관 201호</span></td>
+                            <td style="white-space:nowrap;">스킬 세션(선택사항)</td>
+                            <td><span class="tt-sub">스피치 스킬업 · TBD(전문강사)</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -447,73 +468,68 @@
                     <thead><tr><th>시간</th><th>주제</th><th>주요 내용</th></tr></thead>
                     <tbody>
                         <tr>
+                            <td colspan="3" style="background:#f0ecf8;font-weight:700;color:var(--lg-dark);font-size:0.88rem;padding:10px 14px;">
+                                🌅 나눔관 대강당
+                            </td>
+                        </tr>
+                        <tr>
                             <td>08:30-08:40</td>
-                            <td style="white-space:nowrap;">오리엔테이션 <span class="tt-tag tt-tag-lecture">안내</span></td>
-                            <td><span class="tt-sub">CEO 메시지(영상) · 나눔관 대강당</span></td>
+                            <td style="white-space:nowrap;">오리엔테이션</td>
+                            <td><span class="tt-sub">CEO 메시지(영상)</span></td>
                         </tr>
                         <tr>
                             <td>08:40-10:20</td>
-                            <td style="white-space:nowrap;">경영사상 이해: 위기의 본질 <span class="tt-tag tt-tag-lecture">Lecture</span></td>
-                            <td><span class="tt-sub">"CEO 메시지/위기의 본질을 제대로 이해하자" · 역대 최강의 경쟁자 C-Brand · 이현진 담당</span></td>
+                            <td style="white-space:nowrap;">경영사상 이해: 위기의 본질</td>
+                            <td><span class="tt-sub">"CEO 메시지/위기의 본질을 제대로 이해하자" · 위기의 본질: 역대 최강의 경쟁자 C-Brand · 이현진 담당</span></td>
                         </tr>
                         <tr>
                             <td>설명대체</td>
-                            <td style="white-space:nowrap;">위기의 실체 체험 <span class="tt-tag tt-tag-practice">체험</span></td>
-                            <td><span class="tt-sub">"말이 아닌 눈으로 확인하자" · C-Brand vs 자사 제품/부품 비교 전시 · 로비</span></td>
+                            <td style="white-space:nowrap;">위기의 실체 체험</td>
+                            <td><span class="tt-sub">"말이 아닌 눈으로 확인하자" · 위기감 객관적 증거 확인 · C-Brand vs 자사 제품/부품 비교 전시 · 현물 전시</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="background:#f0ecf8;font-weight:700;color:var(--lg-dark);font-size:0.88rem;padding:10px 14px;">
+                                🏫 채움관 205호
+                            </td>
                         </tr>
                         <tr>
                             <td>10:30-11:30</td>
-                            <td style="white-space:nowrap;">리더의 언어: 위기를 다시 보다 <span class="tt-tag tt-tag-discussion">Workshop</span></td>
-                            <td><span class="tt-sub">CEO 메시지를 리더/팀 관점에서 재해석 · 김영규 팀장 · 채움관 205호</span></td>
+                            <td style="white-space:nowrap;">강사양성</td>
+                            <td><span class="tt-sub">교육과정 Overview · CEO식 사고법 핵심요약, 학습흐름별 F/T 역할 · 김영규 팀장</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:30-12:00</td>
+                            <td style="white-space:nowrap;">강사양성</td>
+                            <td><span class="tt-sub">강의 일정 계획 수립 · 배성심 팀장</span></td>
                         </tr>
                         <tr class="is-break">
-                            <td>11:30-12:30</td>
-                            <td style="white-space:nowrap;">중식 <span class="tt-tag tt-tag-meal">Meal</span></td>
-                            <td></td>
+                            <td>12:00-13:00</td>
+                            <td style="white-space:nowrap;">중식</td>
+                            <td><span class="tt-sub">HOUSE1958 스페셜 (능이버섯보양탕) · 임영훈 담당</span></td>
                         </tr>
                         <tr>
-                            <td>12:30-14:00</td>
-                            <td style="white-space:nowrap;">리인벤트2.0 [문제드러내기] <span class="tt-tag tt-tag-discussion">Workshop</span></td>
-                            <td><span class="tt-sub">문제의 크기가 개선의 크기다 · 5%는 불가능해도 30%는 가능하다 · 채움관 205호</span></td>
+                            <td>13:00-15:00</td>
+                            <td style="white-space:nowrap;">리인벤트2.0 내재화 <span class="tt-sub" style="font-weight:400;">[1일차 오후]</span></td>
+                            <td><span class="tt-sub">· 리더의 언어(토론): 토론 아젠다 및 F/T 포인트<br>· REINVENT 2.0 내재화: 사례 실습, F/T 가이드<br>· 문제의 크기가 개선의 크기다<br>· 5%는 불가능해도 30%는 가능하다<br>· 모두의 AX로 Speed-up, Value-up<br>· 매일매일 1%가 혁신의 지름길 · IGM</span></td>
                         </tr>
                         <tr>
-                            <td>15:00-16:30</td>
-                            <td style="white-space:nowrap;">리인벤트2.0 [이기는 실행] <span class="tt-tag tt-tag-discussion">Workshop</span></td>
-                            <td><span class="tt-sub">모두의 AX로 Speed-up, Value-up · 매일매일 1%가 혁신의 지름길 · 배성심 팀장 · 채움관 205호</span></td>
+                            <td>15:00-17:00</td>
+                            <td style="white-space:nowrap;">리더 역할 <span class="tt-sub" style="font-weight:400;">[2일차]</span></td>
+                            <td><span class="tt-sub">팀장 개인 결과물 작성 실습 · F/T 가이드: ①팀 과제정의서 ②리더 선언문 ③Teach Back 패키지 · IGM</span></td>
                         </tr>
                         <tr>
-                            <td>16:30-17:00</td>
-                            <td style="white-space:nowrap;">Wrap-Up <span class="tt-tag tt-tag-reflection">Wrap-Up</span></td>
-                            <td><span class="tt-sub">질의응답 및 강의 계획 수립 · 채움관 205호</span></td>
+                            <td>17:00-17:30</td>
+                            <td style="white-space:nowrap;">Wrap-Up</td>
+                            <td><span class="tt-sub">질의응답</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- 세션 노트 -->
-        <div class="venue-grid" style="margin-top:28px;margin-bottom:0;">
-            <div class="venue-block">
-                <div class="venue-block-title">🔍 문제드러내기 (3가지)</div>
-                <table class="info-table">
-                    <tr><td>① 문제의 크기가 개선의 크기다</td></tr>
-                    <tr><td>② 안되는 이유는 충분하다, 이제 되는 방법을 찾는다</td></tr>
-                    <tr><td>③ 5%는 불가능해도 30%는 가능하다</td></tr>
-                </table>
-            </div>
-            <div class="venue-block">
-                <div class="venue-block-title">🏁 이기는 실행하기 (3가지)</div>
-                <table class="info-table">
-                    <tr><td>① 모두의 AX로 Speed-up, Value-up</td></tr>
-                    <tr><td>② 우리가 보고하는 동안 누군가는 실행하고 있다</td></tr>
-                    <tr><td>③ 매일매일 1%가 혁신의 지름길</td></tr>
-                </table>
-            </div>
-        </div>
-
         <div class="notice-banner" style="margin-top:28px;margin-bottom:0;">
             <span class="notice-icon">📌</span>
-            <p><strong>※ 08:30까지 나눔관 대강당 입실 완료해 주세요.</strong> 오리엔테이션은 정시에 시작합니다.</p>
+            <p>※ 오리엔테이션은 정시에 시작될 예정이오니, 08:20까지 나눔관 대강당로 입실을 완료해 주시기를 바랍니다.</p>
         </div>
 
         <div style="text-align:center;margin-top:32px;">
@@ -588,17 +604,19 @@
                 <div class="venue-block-title">🏫 강의 장소</div>
                 <table class="info-table">
                     <tr><th>주소</th><td>경기도 평택시 진위면 엘지로 222</td></tr>
-                    <tr><th>오전</th><td>나눔관 대강당 (오리엔테이션 · 경영사상 이해)</td></tr>
-                    <tr><th>오후</th><td>A반 채움관 201호 · B반 채움관 205호</td></tr>
-                    <tr><th>주차</th><td>외부 서문 주차장 이용 (내부 주차 불가)</td></tr>
+                    <tr><th>강의실</th><td>러닝센터 나눔관(대강당) · 러닝센터 채움관(분반 강의장)<span class="notice-text"> ※A반 201호 · B반 205호</span></td></tr>
+                    <tr><th>주차</th><td>사전 설문 내 차량번호 기입 시 러닝센터 내 주차 가능</td></tr>
+                    <tr><th>식사</th><td>HOUSE 1958 PDR룸</td></tr>
                 </table>
             </div>
             <div class="venue-block">
-                <div class="venue-block-title">🍽️ 식사 안내</div>
+                <div class="venue-block-title">🏨 숙소 안내</div>
                 <table class="info-table">
-                    <tr><th>A반</th><td>12:00 ~ 13:00 중식 · HOUSE 1958 (능이버섯보양탕)</td></tr>
-                    <tr><th>B반</th><td>11:30 ~ 12:30 중식</td></tr>
-                    <tr><th>참고</th><td>반별 중식 시간이 상이하니 시간표를 확인해 주세요.</td></tr>
+                    <tr><th>체크인</th><td>(사전입소) 교육 시작 전일 오후 1~2시경 숙소 정보 문자 발송, 19시 이후 입실 가능</td></tr>
+                    <tr><th>체크아웃</th><td>교육 종료일 오전 8시까지 퇴실 완료<br><span class="notice-text">※ 퇴실 시 개인 짐을 빠짐없이 챙겨 주시기 바랍니다.</span></td></tr>
+                    <tr><th>배정</th><td>1인 1실 원칙</td></tr>
+                    <tr><th>구비물품</th><td>수건 · 드라이어 · 샴푸 · 바디워시 · 세탁기(공용)</td></tr>
+                    <tr><th>문의(24시)</th><td>숙소: 031-8074-5500 · 응급: 031-610-6119</td></tr>
                 </table>
             </div>
         </div>
@@ -692,7 +710,7 @@
                     <h4><span class="q-badge">Q</span>점심 식사는 어디서 하나요?</h4>
                     <span class="faq-toggle">+</span>
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">A반은 12:00~13:00 HOUSE 1958에서 능이버섯보양탕 특식이 제공되며, B반은 11:30~12:30에 진행됩니다.</div></div>
+                <div class="faq-answer"><div class="faq-answer-inner">A반·B반 모두 12:00~13:00에 진행되며, HOUSE1958 스페셜(능이버섯보양탕)이 제공됩니다.</div></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
@@ -706,7 +724,7 @@
                     <h4><span class="q-badge">Q</span>개인 차량을 가지고 갈 시, 주차 등록을 따로 해야하나요?</h4>
                     <span class="faq-toggle">+</span>
                 </div>
-                <div class="faq-answer"><div class="faq-answer-inner">주차 등록 없이 서문 외부 주차장에 주차 가능합니다. (내부 주차 불가)</div></div>
+                <div class="faq-answer"><div class="faq-answer-inner">사전 설문 시 차량번호를 기입하시면 러닝센터 내 주차가 가능합니다.</div></div>
             </div>
         </div>
     </div>
