@@ -774,8 +774,8 @@
             <button class="action-btn survey" disabled style="opacity:0.5;cursor:default;">
               <div class="btn-icon">🏨</div>
               <div class="btn-text">
-                <div class="btn-label">숙소 확인</div>
-                <div class="btn-desc">기능 추가중</div>
+                <div class="btn-label">나의 숙소 확인하기 (준비중)</div>
+                <div class="btn-desc">새로운 기능을 준비하고 있습니다.</div>
               </div>
               <span class="btn-arrow">›</span>
             </button>
@@ -1160,6 +1160,13 @@
     setQuickBtn('qbPreot',    d.preOtUrl);
     setQuickBtn('qbFacility', d.facilityUrl);
     setQuickBtn('qbSurvey',   d.surveyUrl);
+
+    // 리더십 리인벤트 퀴즈 URL 반영
+    const quizHtmlBtn = document.getElementById('quizHtml');
+    if (quizHtmlBtn) {
+      if (d.quizUrl) { quizHtmlBtn.href = d.quizUrl; quizHtmlBtn.style.opacity = '1'; quizHtmlBtn.style.pointerEvents = 'auto'; }
+      else { quizHtmlBtn.href = '#'; quizHtmlBtn.style.opacity = '0.4'; quizHtmlBtn.style.pointerEvents = 'none'; }
+    }
     // IT 문의 버튼: 로그인 정보(loginId/loginPw)가 있을 때만 표시
     const itBtn = document.getElementById('qbIt');
     if (itBtn) {
