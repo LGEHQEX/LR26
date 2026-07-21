@@ -389,6 +389,42 @@
     }
   }
 
+  /* ── PC 양면 나란히 ── */
+  @media (min-width: 768px) {
+    body { align-items: center; padding: 32px 20px; }
+
+    .top-bar { max-width: 880px; width: 880px; }
+    .lookup-card { max-width: 420px; }
+
+    .flip-container {
+      width: 880px;
+      perspective: none;
+    }
+    .flipper {
+      transform: none !important;
+      display: flex;
+      gap: 24px;
+      position: relative;
+      height: auto !important;
+    }
+    .badge-face {
+      position: relative !important;
+      transform: none !important;
+      width: 50% !important;
+      top: auto !important;
+      left: auto !important;
+      backface-visibility: visible !important;
+    }
+    .badge-back {
+      opacity: 1 !important;
+    }
+    .flip-hint { display: none !important; }
+    .flip-back-btn { display: none !important; }
+
+    /* 앞면 클릭 비활성화 */
+    .badge-front { cursor: default; }
+  }
+
   .dining-close {
     position: absolute; top: 20px; right: 20px; z-index: 10;
     width: 48px; height: 48px; background: rgba(0,0,0,0.25);
@@ -900,14 +936,14 @@
               </div>
               <span class="btn-arrow">›</span>
             </button>
-            <button class="action-btn facility" id="securityBtn" onclick="openSecurityPledge()">
-              <div class="btn-icon">🔏</div>
+            <a class="action-btn facility" href="http://conlms.lge.com/doc/int/002/B002/2026/07/21/91e30055-c595-4e3b-8e83-f3736efc7da1/leadership_format_F.html" target="_blank">
+              <div class="btn-icon">📝</div>
               <div class="btn-text">
-                <div class="btn-label">보안 서약서 서명</div>
-                <div class="btn-desc" id="securityBtnDesc">서명을 진행해주세요</div>
+                <div class="btn-label">과제제출하기</div>
+                <div class="btn-desc">리더십 REINVENT Teach Back</div>
               </div>
-              <span class="btn-arrow" id="securityBtnArrow">›</span>
-            </button>
+              <span class="btn-arrow">›</span>
+            </a>
             <a class="action-btn facility" id="facilityBtn" href="#" target="_blank" onclick="handleBtnClick(event,'facility')">
               <div class="btn-icon">🏢</div>
               <div class="btn-text">
@@ -1366,6 +1402,7 @@
   }
 
   function flipCard() {
+    if (window.innerWidth >= 768) return; // PC에서는 flip 비활성화
     isFlipped = !isFlipped;
     const flipper = document.getElementById('flipper');
     flipper.classList.toggle('flipped', isFlipped);
@@ -1789,7 +1826,7 @@
         <div style="text-align:center;font-size:16px;font-weight:bold;margin:20px 0;">보안 서약서</div>
         <div style="margin-bottom:6px;">소속 : <span id="capDept" style="text-decoration:underline;"></span>&nbsp;&nbsp;&nbsp;&nbsp;성명: <span id="capName" style="text-decoration:underline;"></span></div>
         <div style="margin-bottom:20px;">업무 수행기간 : <span id="capPeriod" style="text-decoration:underline;"></span>&nbsp;&nbsp;중요 과제 내역 : AI교육 실습</div>
-        <div style="margin-bottom:16px;">본인은 생성형 AI 서비스(Gemini 외 5개 사이트)에 접근하여 업무를 수행함에 있어 아래사항을 준수할 것을 서약합니다.</div>
+        <div style="margin-bottom:16px;">본인은 생성형 AI 서비스(챗지피티외 5개사이트)에 접근하여 업무를 수행함에 있어 아래사항을 준수할 것을 서약합니다.</div>
         <div style="margin-bottom:10px;">1. 본인은 LG전자의 정보보안 규정 및 지적재산권 보호 등을 위하여 필요한 관련규정과 회사의 정보보안을 위하여 모든 제반 규정을 준수하고 이를 성실히 이행할 것을 서약합니다.</div>
         <div style="margin-bottom:10px;">2. 생성형 AI 서비스의 입력 데이터(프롬프트) 값에 사내한 자료 및 기밀자료 내용을 입력하지 않겠습니다.</div>
         <div style="margin-bottom:10px;">3. 사내 데이터가 생성형 AI 서버에 저장되어 외부로 유출될 수 있음을 인지하고, 외부로 유출되어서는 안될 정보를 입력하지 않겠습니다.(개인정보, 제품 컨셉 정보, 신기능 정보 등. 사진/이미지 포함)</div>
@@ -1822,7 +1859,7 @@
     </div>
 
     <div class="security-content">
-      <p>본인은 생성형 AI 서비스(Gemini 외 5개 사이트)에 접근하여 업무를 수행함에 있어 아래사항을 준수할 것을 서약합니다.</p>
+      <p>본인은 생성형 AI 서비스(챗지피티의 5개사이트)에 접근하여 업무를 수행함에 있어 아래사항을 준수할 것을 서약합니다.</p>
       <ol>
         <li>본인은 LG전자의 정보보안 규정 및 지적재산권 보호 등을 위하여 필요한 관련규정과 회사의 정보보안을 위하여 모든 제반 규정을 준수하고 이를 성실히 이행할 것을 서약합니다.</li>
         <li>생성형 AI 서비스의 입력 데이터(프롬프트) 값에 사내에 자료 및 기밀자료 내용을 입력하지 않겠습니다.</li>
