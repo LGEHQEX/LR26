@@ -393,11 +393,12 @@
   @media (min-width: 768px) {
     body { align-items: center; padding: 32px 20px; }
 
-    .top-bar { max-width: 880px; width: 880px; }
-    .lookup-card { max-width: 420px; }
+    .top-bar { max-width: 880px; width: 100%; }
+    .lookup-card { max-width: 420px; width: 100%; align-self: center; }
 
     .flip-container {
-      width: 880px;
+      width: 100%;
+      max-width: 880px;
       perspective: none;
     }
     .flipper {
@@ -972,48 +973,19 @@
   </div>
 </div>
 
-<!-- ── 출결 + 서약서 통합 안내 팝업 ── -->
+<!-- ── 출결 안내 팝업 ── -->
 <div class="notice-overlay" id="noticeOverlay">
   <div class="notice-sheet">
-
-    <!-- 스텝 인디케이터 -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;">
-      <div id="stepDot1" style="display:flex;align-items:center;gap:6px;">
-        <div style="width:24px;height:24px;border-radius:50%;background:var(--lg-red);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</div>
-        <span style="font-size:12px;font-weight:600;color:var(--lg-red);">대강당 출결</span>
-      </div>
-      <div style="width:28px;height:2px;background:#ddd;border-radius:2px;"></div>
-      <div id="stepDot2" style="display:flex;align-items:center;gap:6px;opacity:0.35;">
-        <div style="width:24px;height:24px;border-radius:50%;background:#aaa;color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div>
-        <span style="font-size:12px;font-weight:600;color:#aaa;">보안 서약서</span>
-      </div>
+    <div class="notice-icon">🏛️</div>
+    <div class="notice-title">대강당 출결을 진행해 주세요!</div>
+    <div class="notice-body">
+      대강당 입장 전 반드시 출결을 완료해야 합니다.<br>
+      <strong>담당자에게 패스코드를 확인</strong>하신 후<br>
+      아래 버튼을 눌러 출결을 진행해 주세요.<br><br>
+      <span style="font-size:12px;color:#888;">✅ 출결 완료 후 보안 서약서 서명이 이어집니다</span>
     </div>
-
-    <!-- STEP 1: 출결 -->
-    <div id="noticeStep1">
-      <div class="notice-icon">🏛️</div>
-      <div class="notice-title">대강당 출결을 진행해 주세요!</div>
-      <div class="notice-body">
-        대강당 입장 전 반드시 출결을 완료해야 합니다.<br>
-        <strong>담당자에게 패스코드를 확인</strong>하신 후<br>
-        아래 버튼을 눌러 출결을 진행해 주세요.
-      </div>
-      <button class="notice-btn" onclick="closeNoticeAndOpenPasscode()">지금 출결하기</button>
-      <button class="notice-skip" onclick="goToNoticeStep2()">출결 완료 후 다음으로 →</button>
-    </div>
-
-    <!-- STEP 2: 서약서 -->
-    <div id="noticeStep2" style="display:none;">
-      <div class="notice-icon">🔏</div>
-      <div class="notice-title">보안 서약서를 작성해 주세요!</div>
-      <div class="notice-body">
-        생성형 AI 서비스 이용을 위한<br>보안 서약서 서명이 필요합니다.<br>
-        <strong>아래 버튼</strong>을 눌러 서명을 완료해 주세요.
-      </div>
-      <button class="notice-btn" onclick="closeNoticeAndOpenSecurity()">지금 서명하기</button>
-      <button class="notice-skip" onclick="closeNotice()">나중에 할게요</button>
-    </div>
-
+    <button class="notice-btn" onclick="closeNoticeAndOpenPasscode()">지금 출결하기</button>
+    <button class="notice-skip" onclick="closeNotice()">나중에 할게요</button>
   </div>
 </div>
 
@@ -1257,7 +1229,10 @@
         const btn = document.getElementById('btnCheckin');
         btn.classList.remove('armed'); btn.classList.add('done');
         btn.textContent = t ? `✅ 출결완료 ${t}` : '✅ 출결완료';
-        setTimeout(closePasscode, 2200);
+        setTimeout(() => {
+          closePasscode();
+          setTimeout(() => openSecurityPledge(), 300);
+        }, 2200);
       } else if (json.alreadyCheckedIn) {
         const t = json.timestamp ? String(json.timestamp).slice(11,16) : '';
         document.getElementById('pcErrorMsg').textContent =
