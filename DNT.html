@@ -745,6 +745,7 @@
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -1632,7 +1633,6 @@
       const today = new Date();
       const dateStr = `${today.getFullYear()}${String(today.getMonth()+1).padStart(2,'0')}${String(today.getDate()).padStart(2,'0')}`;
       const fileName = `${dateStr}_${d.sano}_${d.name}_${d.dept}`;
-      const dateLabel = `${today.getFullYear()}년 ${today.getMonth()+1}월 ${today.getDate()}일`;
 
       // 업무수행기간 계산
       let periodStr = '';
@@ -1643,85 +1643,47 @@
         periodStr = fmt(start) + ' ~ ' + fmt(end) + ' (12개월)';
       } catch(e) { periodStr = d.startDate || ''; }
 
-      // ── jsPDF로 서약서 PDF 생성 ──
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-
-      // 한글 폰트 설정 (기본 폰트 사용, 영문/숫자만 완벽 렌더링)
-      doc.setFont('helvetica');
-
-      const lm = 20, rm = 190, tw = 170;
-
-      // 헤더
-      doc.setFontSize(9); doc.setTextColor(120);
-      doc.text('LGE Internal Use Only', 105, 10, { align: 'center' });
-      doc.setFontSize(10); doc.setTextColor(0);
-      doc.text('LG', lm, 18);
-      doc.setFontSize(8); doc.setTextColor(120);
-      doc.text('제정일자: 2004.4.30   개정일자: 2022.10.20', lm, 23);
-      doc.setFontSize(14); doc.setTextColor(0); doc.setFont('helvetica','bold');
-      doc.text('보안 서약서(생성형 AI 서비스 이용시)', 105, 22, { align: 'center' });
-      doc.setFontSize(9); doc.setTextColor(120); doc.setFont('helvetica','normal');
-      doc.text('표준번호: A-2152   개정번호: 17', rm, 18, { align: 'right' });
-      doc.line(lm, 26, rm, 26);
-
-      // 제목
-      doc.setFontSize(16); doc.setTextColor(0); doc.setFont('helvetica','bold');
-      doc.text('보안 서약서', 105, 40, { align: 'center' });
-
-      // 인적사항
-      doc.setFontSize(10); doc.setFont('helvetica','normal'); doc.setTextColor(0);
-      let y = 54;
-      doc.text(`소속: ${d.dept}`, lm, y);
-      doc.text(`성명: ${d.name}`, 120, y);
-      y += 7;
-      doc.text(`업무 수행기간: ${periodStr}`, lm, y);
-      y += 7;
-      doc.text(`주요 과제 내역: AI교육 실습`, lm, y);
-      y += 10;
-      doc.line(lm, y, rm, y); y += 8;
-
-      // 본문
-      doc.setFontSize(10);
-      const intro = '본인은 생성형 AI 서비스(챗지피티의 5개사이트)에 접근하여 업무를 수행함에 있어 아래사항을 준수할 것을 서약합니다.';
-      const introLines = doc.splitTextToSize(intro, tw);
-      doc.text(introLines, lm, y); y += introLines.length * 6 + 4;
-
-      const items = [
-        '1. 본인은 LG전자의 정보보안 규정 및 지적재산권 보호 등을 위하여 필요한 관련규정과 회사의 정보보안을 위하여 모든 제반 규정을 준수하고 이를 성실히 이행할 것을 서약합니다.',
-        '2. 생성형 AI 서비스의 입력 데이터(프롬프트) 값에 사내에 자료 및 기밀자료 내용을 입력하지 않겠습니다.',
-        '3. 사내 데이터가 생성형 AI 서버에 저장되어 외부로 유출될 수 있음을 인지하고, 외부로 유출되어서는 안될 정보를 입력하지 않겠습니다.(개인정보, 제품 컨셉 정보, 신기능 정보 등. 사진/이미지 포함)',
-        '4. 본인은 회사가 본 비밀유지서약에 의거하여 이의 준수를 위한 정보보안 모니터링에 동의하며, 보안감사에 필요한 정보를 즉각 제공하는 것에 동의합니다.',
-        '5. 보안에 위반되는 행위에 대한 책임은 본인에게 있으며, 정보보안 규정에 의해 징계등의 인사조치를 받을 수 있음에 동의합니다.'
-      ];
-      items.forEach(item => {
-        const lines = doc.splitTextToSize(item, tw);
-        doc.text(lines, lm, y); y += lines.length * 6 + 3;
-      });
-
-      y += 10;
-
-      // 날짜 및 서명
-      doc.setFontSize(11);
-      doc.text(dateLabel, rm, y, { align: 'right' }); y += 8;
-      doc.text('서약인', rm - 40, y);
+      // 캡처용 div 정보 세팅
+      document.getElementById('capDept').textContent   = d.dept || '';
+      document.getElementById('capName').textContent   = d.name || '';
+      document.getElementById('capName2').textContent  = d.name || '';
+      document.getElementById('capPeriod').textContent = periodStr;
+      document.getElementById('capDate').textContent   = `${today.getFullYear()}년  ${today.getMonth()+1}월  ${today.getDate()}일`;
 
       // 서명 이미지 삽입
       const sigData = signatureCanvas.toDataURL('image/png');
-      doc.addImage(sigData, 'PNG', rm - 50, y - 6, 40, 18);
-      y += 22;
+      document.getElementById('capSig').src = sigData;
 
-      doc.line(lm, y, rm, y); y += 8;
-      doc.setFontSize(12); doc.setFont('helvetica','bold');
-      doc.text('LG 전자주식회사 귀중', 105, y, { align: 'center' });
+      // 폰트 로드 대기
+      try {
+        await document.fonts.load('400 13px "Noto Sans KR"');
+        await document.fonts.load('700 13px "Noto Sans KR"');
+      } catch(e) {}
 
-      // 하단
-      y += 16;
-      doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(120);
-      doc.text('사내한', lm, 287);
-      doc.text('LG전자(주).', rm, 287, { align: 'right' });
+      // html2canvas로 캡처
+      const captureEl = document.getElementById('pledgeCapture');
+      captureEl.style.left = '0';
+      captureEl.style.top = '0';
+      captureEl.style.position = 'absolute';
+      captureEl.style.zIndex = '-1';
 
-      // PDF → base64
+      const canvas = await html2canvas(captureEl, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+
+      captureEl.style.left = '-9999px';
+      captureEl.style.position = 'fixed';
+
+      // PDF 생성
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const pageW = 210;
+      const imgH = (canvas.height * pageW) / canvas.width;
+      doc.addImage(imgData, 'JPEG', 0, 0, pageW, Math.min(imgH, 297));
       const pdfBase64 = doc.output('datauristring').split(',')[1];
 
       // GAS로 전송
@@ -1754,7 +1716,7 @@
     }
   }
 
-  function openLodgingPopup() {
+    function openLodgingPopup() {
     document.getElementById('lodgingOverlay').classList.add('open');
   }
   function closeLodgingPopup() {
@@ -1789,7 +1751,7 @@
 <div class="security-overlay" id="securityOverlay">
   <div class="security-popup">
     <!-- 캡처용 서약서 (화면에 안 보임) -->
-    <div id="pledgeCapture" style="position:fixed;left:-9999px;top:0;width:794px;padding:40px 60px;background:white;font-family:'Malgun Gothic','나눔고딕',sans-serif;font-size:13px;line-height:1.8;color:#000;">
+    <div id="pledgeCapture" style="position:fixed;left:-9999px;top:0;width:794px;padding:40px 60px;background:white;font-family:'Noto Sans KR',sans-serif;font-size:13px;line-height:1.8;color:#000;">
       <div style="text-align:center;font-size:11px;color:#555;margin-bottom:6px;">LGE Internal Use Only</div>
       <table style="width:100%;border-collapse:collapse;border:1px solid #000;margin-bottom:0;">
         <tr>
