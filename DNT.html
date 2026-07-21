@@ -393,25 +393,27 @@
   @media (min-width: 768px) {
     body { align-items: center; padding: 32px 20px; }
 
-    .top-bar { max-width: 880px; width: 100%; }
+    .top-bar { max-width: 900px; width: 100%; }
     .lookup-card { max-width: 420px; width: 100%; align-self: center; }
 
     .flip-container {
       width: 100%;
-      max-width: 880px;
+      max-width: 900px;
       perspective: none;
     }
     .flipper {
       transform: none !important;
       display: flex;
       gap: 24px;
+      justify-content: center;
       position: relative;
       height: auto !important;
     }
     .badge-face {
       position: relative !important;
       transform: none !important;
-      width: 50% !important;
+      width: 420px !important;
+      min-width: 420px !important;
       top: auto !important;
       left: auto !important;
       backface-visibility: visible !important;
@@ -421,8 +423,6 @@
     }
     .flip-hint { display: none !important; }
     .flip-back-btn { display: none !important; }
-
-    /* 앞면 클릭 비활성화 */
     .badge-front { cursor: default; }
   }
 
