@@ -211,6 +211,18 @@
   }
   .notice li { margin-bottom: 4px; list-style-position: inside; }
   .teams-link { color: var(--lg-red); font-weight: 700; text-decoration: underline; }
+  .notice-wrap { position: relative; }
+  .btn-qna {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    padding: 8px 16px; border: 1.5px solid var(--lg-red);
+    background: #fff; color: var(--lg-red);
+    border-radius: 20px; font-size: 12.5px; font-weight: 700;
+    font-family: inherit; cursor: pointer; white-space: nowrap;
+  }
+  .btn-qna:active { background: var(--lg-red-light); }
+  @media (max-width: 380px) {
+    .btn-qna { position: static; transform: none; display: inline-block; margin-top: 10px; }
+  }
 
   /* ===== 토스트 / 결과 ===== */
   .overlay {
@@ -271,6 +283,22 @@
   .modal-info button {
     margin-top: 18px;
   }
+
+  /* ===== 문의(Q&A) 팝업 모달 ===== */
+  .modal-qna {
+    max-width: 480px; width: 92vw; height: 82vh;
+    padding: 0; display: flex; flex-direction: column; overflow: hidden;
+  }
+  .qna-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid var(--line); flex-shrink: 0;
+  }
+  .qna-head h3 { font-size: 15px; font-weight: 700; }
+  .qna-close {
+    border: none; background: none; font-size: 16px; color: var(--gray);
+    cursor: pointer; padding: 4px 6px; line-height: 1;
+  }
+  .qna-iframe { flex: 1; width: 100%; border: none; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -349,11 +377,13 @@
 
   <button class="btn-submit" id="btnSubmit" onclick="submitForm()">신청하기</button>
 
-  <ul class="notice">
-    <li>재신청 시 <b>가장 최근 신청 내용으로 자동 변경</b>됩니다.</li>
-    <li>정원이 마감된 차수는 선택할 수 없습니다.</li>
-    <li>문의: <a href="https://teams.microsoft.com/l/chat/0/0?users=이메일@lge.com" target="_blank" class="teams-link">Teams로 문의하기</a></li>
-  </ul>
+  <div class="notice-wrap">
+    <ul class="notice">
+      <li>재신청 시 <b>가장 최근 신청 내용으로 자동 변경</b>됩니다.</li>
+      <li>정원이 마감된 차수는 선택할 수 없습니다.</li>
+    </ul>
+    <button type="button" class="btn-qna" onclick="openQnaModal()">문의하기</button>
+  </div>
 
 </div>
 
@@ -402,6 +432,17 @@
     </div>
     <div class="my-status" id="myStatus"></div>
     <button onclick="closeMyStatusModal()" style="margin-top:16px;">닫기</button>
+  </div>
+</div>
+
+<!-- 문의(Q&A) 팝업 모달 -->
+<div class="overlay" id="overlayQna">
+  <div class="modal modal-qna">
+    <div class="qna-head">
+      <h3>문의하기</h3>
+      <button type="button" class="qna-close" onclick="closeQnaModal()" aria-label="닫기">✕</button>
+    </div>
+    <iframe id="qnaFrame" class="qna-iframe" src="" loading="lazy"></iframe>
   </div>
 </div>
 
@@ -542,6 +583,20 @@ function openStayInfoModal() {
 }
 function closeStayInfoModal() {
   document.getElementById('overlayStayInfo').classList.remove('show');
+}
+
+/* ===== 문의(Q&A) 팝업 모달 ===== */
+const QNA_URL = 'https://26lr.netlify.app/qna';
+function openQnaModal() {
+  const frame = document.getElementById('qnaFrame');
+  if (!frame.dataset.loaded) {
+    frame.src = QNA_URL; // 최초 클릭 시에만 로드
+    frame.dataset.loaded = '1';
+  }
+  document.getElementById('overlayQna').classList.add('show');
+}
+function closeQnaModal() {
+  document.getElementById('overlayQna').classList.remove('show');
 }
 
 /* ===== 제출 ===== */
