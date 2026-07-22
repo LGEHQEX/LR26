@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문의하기</title>
+<style>
+  :root {
+    --lg-red: #A50034;
+    --lg-red-dark: #7C0026;
+    --gray-900: #1A1A1A;
+    --gray-600: #6B6B6B;
+    --gray-300: #DCDCDC;
+    --gray-100: #F5F5F5;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    background: var(--gray-100);
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 문의하기 트리거 버튼 */
+  .inquiry-trigger {
+    background: var(--lg-red);
+    color: var(--white);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(165, 0, 52, 0.25);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .inquiry-trigger:hover { background: var(--lg-red-dark); transform: translateY(-1px); }
+  .inquiry-trigger:active { transform: translateY(0); }
+
+  /* 오버레이 */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+
+  /* 모달 본체 */
+  .modal {
+    background: var(--white);
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    border-radius: 16px;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.25s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    background: var(--lg-red);
+    color: var(--white);
+    padding: 22px 24px;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+  }
+  .modal-header h2 {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .modal-header p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+    opacity: 0.92;
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.85;
+    padding: 0;
+  }
+  .modal-close:hover { opacity: 1; }
+
+  .modal-body { padding: 24px; }
+
+  .field-group { margin-bottom: 18px; }
+  .field-group:last-child { margin-bottom: 0; }
+
+  .field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .field-label .required { color: var(--lg-red); margin-left: 2px; }
+
+  .field-input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--gray-900);
+    background: var(--white);
+    transition: border-color 0.15s ease;
+  }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--lg-red);
+  }
+
+  /* 문의 종류 - 칩 선택 */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .type-chip {
+    padding: 10px 8px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .type-chip:hover { border-color: var(--lg-red); color: var(--lg-red); }
+  .type-chip.selected {
+    background: var(--lg-red);
+    border-color: var(--lg-red);
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* 이메일 입력 - 접미사 고정 */
+  .email-row {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .email-row:focus-within { border-color: var(--lg-red); }
+  .email-row input {
+    border: none;
+    flex: 1;
+    min-width: 0;
+    padding: 11px 12px;
+    font-size: 14px;
+    outline: none;
+  }
+  .email-suffix {
+    padding: 0 12px;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 14px;
+    white-space: nowrap;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    border-left: 1.5px solid var(--gray-300);
+  }
+
+  textarea.field-input {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.5;
+    font-family: inherit;
+  }
+
+  .modal-footer {
+    padding: 4px 24px 24px;
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    flex: 1;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn-cancel {
+    background: var(--gray-100);
+    color: var(--gray-600);
+  }
+  .btn-submit {
+    background: var(--lg-red);
+    color: var(--white);
+  }
+  .btn-submit:disabled {
+    background: var(--gray-300);
+    cursor: not-allowed;
+  }
+
+  /* 제출 완료 상태 */
+  .success-view {
+    display: none;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .success-view.active { display: block; }
+  .success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #E8F5E9;
+    color: #2E7D32;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .success-view h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: var(--gray-900);
+  }
+  .success-view p {
+    margin: 0 0 24px;
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .error-msg {
+    display: none;
+    color: var(--lg-red);
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  .error-msg.active { display: block; }
+</style>
+</head>
+<body>
+
+<button class="inquiry-trigger" onclick="openInquiryModal()">
+  💬 문의하기
+</button>
+
+<div class="modal-overlay" id="inquiryOverlay">
+  <div class="modal">
+
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeInquiryModal()">&times;</button>
+      <h2>문의하기</h2>
+      <p>리더십 리인벤트 2.0 과정 관련 문의사항이 있으신 경우 아래 양식에 맞게 작성해 주시면, 운영자가 확인 후 순차적으로 답변드리겠습니다.</p>
+    </div>
+
+    <div id="formView">
+      <div class="modal-body">
+
+        <div class="field-group">
+          <label class="field-label">문의 종류<span class="required">*</span></label>
+          <div class="type-grid" id="typeGrid">
+            <div class="type-chip" data-type="교육/운영관련">교육/운영관련</div>
+            <div class="type-chip" data-type="일정관련">일정관련</div>
+            <div class="type-chip" data-type="출결관련">출결관련</div>
+            <div class="type-chip" data-type="기타관련">기타관련</div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">이름<span class="required">*</span></label>
+          <input type="text" class="field-input" id="inputName" placeholder="이름을 입력해 주세요">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">사내메일주소<span class="required">*</span></label>
+          <div class="email-row">
+            <input type="text" id="inputEmailPrefix" placeholder="메일주소 입력">
+            <span class="email-suffix">@lge.com</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">문의 내용<span class="required">*</span></label>
+          <textarea class="field-input" id="inputContent" placeholder="문의하실 내용을 자세히 적어주세요"></textarea>
+        </div>
+
+        <div class="error-msg" id="errorMsg">모든 항목을 입력해 주세요.</div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-cancel" onclick="closeInquiryModal()">취소</button>
+        <button class="btn btn-submit" id="submitBtn" onclick="submitInquiry()">문의 등록</button>
+      </div>
+    </div>
+
+    <div class="success-view" id="successView">
+      <div class="success-icon">✓</div>
+      <h3>문의가 접수되었습니다</h3>
+      <p>운영자가 확인 후 순차적으로<br>답변드리겠습니다.</p>
+      <button class="btn btn-submit" style="flex:none; padding: 11px 28px;" onclick="closeInquiryModal()">확인</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ⚠️ Google Apps Script 웹앱 배포 URL로 교체하세요
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbyo8r0fcYqXH8K3FmIbCJ1S_P7ck39-oCv5Z64pDTvAV7Fg-cRmsIN0NCqrfXUQ9QZQ/exec";
+
+  let selectedType = "";
+
+  const overlay = document.getElementById("inquiryOverlay");
+  const typeGrid = document.getElementById("typeGrid");
+  const submitBtn = document.getElementById("submitBtn");
+  const errorMsg = document.getElementById("errorMsg");
+
+  typeGrid.addEventListener("click", function(e) {
+    const chip = e.target.closest(".type-chip");
+    if (!chip) return;
+    document.querySelectorAll(".type-chip").forEach(c => c.classList.remove("selected"));
+    chip.classList.add("selected");
+    selectedType = chip.dataset.type;
+  });
+
+  function openInquiryModal() {
+    overlay.classList.add("active");
+    document.getElementById("formView").style.display = "block";
+    document.getElementById("successView").classList.remove("active");
+    resetForm();
+  }
+
+  function closeInquiryModal() {
+    overlay.classList.remove("active");
+  }
+
+  overlay.addEventListener("click", function(e) {
+    if (e.target === overlay) closeInquiryModal();
+  });
+
+  function resetForm() {
+    selectedType = "";
+    document.querySelectorAll(".type-chip").forEach(c => c.classList.remove("selected"));
+    document.getElementById("inputName").value = "";
+    document.getElementById("inputEmailPrefix").value = "";
+    document.getElementById("inputContent").value = "";
+    errorMsg.classList.remove("active");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "문의 등록";
+  }
+
+  function submitInquiry() {
+    const name = document.getElementById("inputName").value.trim();
+    const emailPrefix = document.getElementById("inputEmailPrefix").value.trim();
+    const content = document.getElementById("inputContent").value.trim();
+
+    if (!selectedType || !name || !emailPrefix || !content) {
+      errorMsg.classList.add("active");
+      return;
+    }
+    errorMsg.classList.remove("active");
+
+    const email = emailPrefix + "@lge.com";
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "등록 중...";
+
+    const payload = {
+      action: "submitInquiry",
+      type: selectedType,
+      name: name,
+      email: email,
+      content: content,
+      timestamp: new Date().toISOString()
+    };
+
+    // GAS 웹앱은 text/plain으로 보내야 CORS preflight를 피할 수 있음
+    fetch(GAS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.result === "success") {
+          document.getElementById("formView").style.display = "none";
+          document.getElementById("successView").classList.add("active");
+        } else {
+          throw new Error(data.message || "등록 실패");
+        }
+      })
+      .catch(err => {
+        alert("문의 등록 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.\n(" + err.message + ")");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "문의 등록";
+      });
+  }
+</script>
+
+</body>
+</html>
