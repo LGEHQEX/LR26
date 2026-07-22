@@ -428,6 +428,7 @@
 
         <a href="#" onclick="openSurveyDrawer('https://26lr.netlify.app/reg_new'); return false;" class="tab-item" style="color:var(--lg-red);font-weight:700;">📝 사전 설문</a>
         <a href="#center-life" onclick="openDrawer(); return false;" class="tab-item" style="color:var(--lg-red);font-weight:700;border-bottom:2px solid var(--lg-red);">🏨 러닝센터 생활안내</a>
+        <a href="#" onclick="openQnaDrawer(); return false;" class="tab-item" style="color:var(--lg-red);font-weight:700;">✉️ 문의하기</a>
     </div>
 </div>
 
@@ -453,24 +454,42 @@
                 <div style="font-size:1rem;font-weight:700;color:var(--lg-dark);">평택 러닝센터</div>
             </div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 0;">
-            <div style="background:#fffbf0;border:1px solid #ffe08a;border-radius:14px;padding:18px 20px;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                    <span style="font-size:1.2rem;">💻</span>
-                    <strong style="font-size:0.9rem;color:var(--lg-accent);">사내 노트북 준비</strong>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start;">
+
+                <!-- 카드 1: 사전준비 -->
+                <div class="must-read-card" style="background:#fffbf0;border-color:#ffe08a;">
+                    <div style="font-size:0.92rem;font-weight:800;color:var(--lg-red);letter-spacing:0.5px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #ffe08a;">사전준비</div>
+                    <div style="margin-bottom:16px;">
+                        <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;font-weight:700;color:var(--lg-dark);margin-bottom:7px;">💻 사내 노트북 준비</div>
+                        <p style="font-size:0.84rem;color:var(--lg-gray);line-height:1.8;">교육 중 실습 모듈이 진행됩니다. 사내 노트북을 지참해 주세요.</p>
+                    </div>
+                    <div style="border-top:1px solid var(--lg-border);padding-top:16px;">
+                        <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;font-weight:700;color:var(--lg-dark);margin-bottom:7px;">📱 고용24 비콘 출결 준비</div>
+                        <p style="font-size:0.84rem;color:var(--lg-gray);line-height:1.8;margin-bottom:12px;">고용24 가입 및 출결관리 어플 설치 필수. 당일 입·퇴실 시 비콘 출결 체크를 해주세요.</p>
+                        <button onclick="openBeaconModal()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📎 비콘 출결 가이드</button>
+                    </div>
                 </div>
-                <p style="font-size:0.82rem;color:#7a5c00;line-height:1.6;margin-bottom:12px;">사내에서 제공된 노트북이 아닌 개인 소유 PC 지참 시 방문신청을 통해 노트북 정보 기재 후 반입 가능합니다.</p>
-                <button onclick="openLaptopModal()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📎 방문신청 가이드(개인PC)</button>
-            </div>
-            <div style="background:#fffbf0;border:1px solid #ffe08a;border-radius:14px;padding:18px 20px;">
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                    <span style="font-size:1.2rem;">📡</span>
-                    <strong style="font-size:0.9rem;color:var(--lg-accent);">비콘 출결 준비</strong>
+
+                <!-- 카드 2: 사전과제 1 -->
+                <div class="must-read-card">
+                    <div style="font-size:0.92rem;font-weight:800;color:var(--lg-red);letter-spacing:0.5px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0e0e3;">사전과제 1</div>
+                    <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;font-weight:700;color:var(--lg-dark);margin-bottom:7px;">📝 진원(眞原) 찾기 실습</div>
+                    <p style="font-size:0.84rem;color:var(--lg-gray);line-height:1.8;margin-bottom:16px;">'진원 찾기' 실습을 위해, 업무 중 경험한 문제 상황 사례 1건을 자유 양식으로 작성해 주세요.</p>
+                    <a href="#" onclick="document.getElementById('modal-jinae').style.display='flex'; return false;" style="font-size:0.84rem;font-weight:700;color:var(--lg-red);text-decoration:none;">자세히 보기 →</a>
                 </div>
-                <p style="font-size:0.82rem;color:#7a5c00;line-height:1.6;margin-bottom:12px;">고용24 가입 및 출결관리 어플 설치 필수. 당일 입·퇴실 시 비콘 출결 체크를 해주세요.</p>
-                <button onclick="openBeaconModal()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📎 출결 가이드</button>
+
+                <!-- 카드 3: 사전과제 2 -->
+                <div class="must-read-card">
+                    <div style="font-size:0.92rem;font-weight:800;color:var(--lg-red);letter-spacing:0.5px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0e0e3;">사전과제 2</div>
+                    <div style="display:flex;align-items:center;gap:7px;font-size:0.9rem;font-weight:700;color:var(--lg-dark);margin-bottom:7px;">📝 리더 멘탈 건강 진단</div>
+                    <p style="font-size:0.84rem;color:var(--lg-gray);line-height:1.8;margin-bottom:16px;">멘탈 건강 검진(약 10분) 참여 후, 결과 PDF를 저장해 교육 당일 지참해 주세요.</p>
+                    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                        <a href="#" onclick="document.getElementById('modal-mental').style.display='flex'; return false;" style="font-size:0.84rem;font-weight:700;color:var(--lg-red);text-decoration:none;">자세히 보기 →</a>
+                        <a href="https://bi.oasims.com/member/member.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 13px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border-radius:6px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;">🔗 바로 진단하기</a>
+                    </div>
+                </div>
+
             </div>
-        </div>
 
     </div>
 </section>
@@ -1195,6 +1214,79 @@ document.querySelectorAll('.day-card,.tt-table-wrap,.direction-card,.faq-item,.c
         <button onclick="closeSideDrawer()" style="width:34px;height:34px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;font-size:1rem;cursor:pointer;color:#666;">✕</button>
     </div>
     <div class="side-drawer-body"><iframe src="https://26lr.netlify.app/qna" style="width:100%;height:100%;border:none;flex:1;min-height:calc(100vh - 70px);"></iframe></div>
+</div>
+
+<!-- ── 진원 찾기 실습 모달 ── -->
+<div id="modal-jinae" style="display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+    <div style="background:#fff;border-radius:20px;max-width:560px;width:92%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <div style="background:linear-gradient(135deg,var(--lg-red),#8a0028);padding:24px 28px;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1px;margin-bottom:4px;">사전과제 1</div>
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;">📝 진원(眞原) 찾기 실습 준비</h3>
+            </div>
+            <button onclick="document.getElementById('modal-jinae').style.display='none'" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:1rem;cursor:pointer;flex-shrink:0;">✕</button>
+        </div>
+        <div style="padding:28px;">
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:14px;">이번 교육과정에서는 <strong style="color:var(--lg-dark);">"진원 찾기"</strong> 활동을 통해 현상 너머의 진짜 원인을 찾아가는 실습을 진행합니다.</p>
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:14px;">이를 위해 사전에 본인 업무 영역에서 겪었던 <strong style="color:var(--lg-dark);">문제 상황(사례)을 준비</strong>해 주시기 바랍니다. <span style="color:var(--lg-gray);">(자유 양식)</span></p>
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:20px;">준비하신 사례는 실습 중 함께 논의하며, 겉으로 드러난 현상인지 문제의 본질(진원인)인지를 직접 검증해 보는 과정으로 활용됩니다.</p>
+            <div style="background:#fff0f3;border:1px solid #ffd0d8;border-radius:10px;padding:14px 18px;display:flex;gap:10px;align-items:flex-start;">
+                <span style="font-size:1.1rem;flex-shrink:0;">📌</span>
+                <p style="font-size:0.84rem;color:#7a3040;line-height:1.7;font-weight:600;">발표자는 현장에서 무작위로 선정되니, <strong>전원 준비해 오시기 바랍니다.</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── 멘탈 건강 진단 모달 ── -->
+<div id="modal-mental" style="display:none;position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+    <div style="background:#fff;border-radius:20px;max-width:580px;width:92%;max-height:88vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <div style="background:linear-gradient(135deg,var(--lg-red),#8a0028);padding:24px 28px;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1px;margin-bottom:4px;">사전과제 2</div>
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;">📝 리더 멘탈 건강 진단 실시</h3>
+            </div>
+            <button onclick="document.getElementById('modal-mental').style.display='none'" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:1rem;cursor:pointer;flex-shrink:0;">✕</button>
+        </div>
+        <div style="padding:28px;">
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:14px;">교육 마지막 세션에서는 변화관리를 주도하시는 리더분들의 멘탈 건강을 다루는 시간이 진행됩니다.</p>
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:14px;">이에 앞서, 사전에 본인의 멘탈 건강 상태를 진단해 보실 수 있는 검진 링크를 송부드립니다. 안내에 따라 검진에 참여하신 후, <strong style="color:var(--lg-dark);">검진 결과(PDF)를 저장하여 교육 당일 지참</strong>해 주시기 바랍니다.</p>
+            <p style="font-size:0.88rem;color:var(--lg-gray);line-height:1.9;margin-bottom:20px;">교육 중에는 준비해 오신 진단 결과를 함께 해석하고, 향후 멘탈 건강 관리를 위한 Tip과 프로그램을 소개해 드릴 예정입니다.</p>
+            <!-- 진단 정보 테이블 -->
+            <table style="width:100%;border-collapse:collapse;font-size:0.84rem;margin-bottom:20px;">
+                <tbody>
+                    <tr style="border-bottom:1px solid var(--lg-border);">
+                        <td style="padding:10px 14px;background:#f8f4f5;font-weight:700;color:var(--lg-dark);width:30%;border-radius:0;">🔗 검진 링크</td>
+                        <td style="padding:10px 14px;"><a href="https://bi.oasims.com/member/member.html" target="_blank" style="color:var(--lg-red);font-weight:600;text-decoration:none;">bi.oasims.com/member/member.html</a></td>
+                    </tr>
+                    <tr style="border-bottom:1px solid var(--lg-border);">
+                        <td style="padding:10px 14px;background:#f8f4f5;font-weight:700;color:var(--lg-dark);">📅 검진 기간</td>
+                        <td style="padding:10px 14px;color:var(--lg-gray);">~7/20(월)까지</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid var(--lg-border);">
+                        <td style="padding:10px 14px;background:#f8f4f5;font-weight:700;color:var(--lg-dark);">⏱️ 소요 시간</td>
+                        <td style="padding:10px 14px;color:var(--lg-gray);">약 10분 (총 102문항)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px 14px;background:#f8f4f5;font-weight:700;color:var(--lg-dark);">📄 결과 보관</td>
+                        <td style="padding:10px 14px;color:var(--lg-gray);">PDF 파일로 저장 (교육 당일 지참)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 참여 방법 -->
+            <div style="background:#fafafa;border:1px solid var(--lg-border);border-radius:10px;padding:16px 18px;margin-bottom:20px;">
+                <div style="font-size:0.84rem;font-weight:700;color:var(--lg-dark);margin-bottom:10px;">📋 참여 방법</div>
+                <ol style="padding-left:18px;margin:0;display:flex;flex-direction:column;gap:6px;">
+                    <li style="font-size:0.83rem;color:var(--lg-gray);line-height:1.7;"><a href="https://bi.oasims.com/member/member.html" target="_blank" style="color:var(--lg-red);font-weight:600;text-decoration:none;">bi.oasims.com/member/member.html</a> 링크로 접속</li>
+                    <li style="font-size:0.83rem;color:var(--lg-gray);line-height:1.7;">회사명에 <strong style="color:var(--lg-dark);">'LG전자(마음검진테스트)'</strong> 입력 후 선택</li>
+                    <li style="font-size:0.83rem;color:var(--lg-gray);line-height:1.7;">본인 정보 입력(이름, 생년월일, 전화번호 등) 후 [등록]</li>
+                    <li style="font-size:0.83rem;color:var(--lg-gray);line-height:1.7;">[마음건강검진 실시] 클릭 → 문항 체크 → 완료</li>
+                    <li style="font-size:0.83rem;color:var(--lg-gray);line-height:1.7;">[결과보기]로 개인 보고서 즉시 확인</li>
+                </ol>
+            </div>
+            <a href="https://bi.oasims.com/member/member.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--lg-red);color:#fff;font-size:0.9rem;font-weight:700;border-radius:10px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;">🔗 바로 진단하기</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
