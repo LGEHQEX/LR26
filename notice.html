@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'26 리더십 리인벤트 2.0 교육 안내</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        :root {
+            --lg-red: #A50034;
+            --lg-dark: #1a1a1a;
+            --lg-gray: #6b6b6b;
+            --lg-light: #fafafa;
+            --lg-white: #ffffff;
+            --lg-border: #e8e0e0;
+            --lg-accent: #c8001e;
+            --card-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif; color: var(--lg-dark); line-height: 1.7; background: var(--lg-light); font-size: 17px; }
+
+        /* ── HERO ── */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1c1c2e 50%, #2d1a2e 100%);
+            color: white;
+            padding: 36px 24px 28px;
+            overflow: hidden;
+            text-align: center;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(165,0,52,0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(80,0,120,0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .hero { max-width: 1000px; margin: 0 auto; position: relative; z-index: 2; }
+        .hero-text { text-align: center; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(165,0,52,0.25);
+            border: 1px solid rgba(165,0,52,0.5);
+            color: #ff8fa3;
+            padding: 6px 16px;
+            border-radius: 24px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .badge-dot { width: 8px; height: 8px; background: #ff6b8a; border-radius: 50%; animation: pulse 2s infinite; box-shadow: 0 0 8px rgba(255,107,138,0.6); }
+        @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 8px rgba(255,107,138,0.6)} 50%{opacity:0.4;box-shadow:0 0 2px rgba(255,107,138,0.2)} }
+        .hero-camp-label { font-size: 1.6rem; font-weight: 600; color: rgba(255,255,255,0.65); margin-bottom: 8px; letter-spacing: 1px; opacity:0; transform:translateY(20px); animation:heroIn 0.7s ease-out 0.2s forwards; }
+        .jb-highlight { font-weight: 800; background: linear-gradient(90deg, #ff6b8a, #ff8fa3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.3; margin-bottom: 16px; letter-spacing: -0.5px; color: #fff; opacity:0; transform:translateY(30px); animation:heroIn 0.8s ease-out 0.2s forwards; }
+        @keyframes heroIn { to{opacity:1;transform:translateY(0)} }
+        .hero .badge { opacity:0; transform:translateY(20px); animation:heroIn 0.6s ease-out 0.1s forwards; }
+        .hero .subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto; opacity:0; transform:translateY(20px); animation:heroIn 0.8s ease-out 0.6s forwards; line-height: 1.7; }
+        .hero-meta { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px; opacity:0; animation:heroIn 0.8s ease-out 0.8s forwards; }
+        .hero-meta-item { display:flex; flex-direction:column; align-items:center; gap:2px; }
+        .hero-meta-label { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.08em; text-transform:uppercase; font-family:'DM Sans',sans-serif; }
+        .hero-meta-value { font-size:13px; font-weight:600; color:rgba(255,255,255,0.9); }
+        .hero-divider { width:1px; height:28px; background:rgba(255,255,255,0.15); align-self:center; }
+
+        /* ── TAB BAR ── */
+        .tab-bar { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.97); backdrop-filter:blur(12px); border-bottom:1px solid var(--lg-border); }
+      .tab-bar-inner {width:100%;display:flex;justify-content:center;align-items:center;padding:0 24px;overflow-x:auto;}
+        .tab-bar-inner::-webkit-scrollbar { display:none; }
+        .tab-item { flex-shrink:0; padding:14px 20px; font-size:0.88rem; font-weight:600; color:var(--lg-gray); text-decoration:none; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
+        .tab-item:hover { color:var(--lg-red); }
+        .tab-item.active { color:var(--lg-red); border-bottom-color:var(--lg-red); }
+        .tab-must-read { color:var(--lg-accent) !important; animation:mustReadPulse 2s ease infinite; }
+        .tab-must-read.active { color:var(--lg-accent) !important; border-bottom-color:var(--lg-accent) !important; }
+        @keyframes mustReadPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+        /* ── SECTIONS ── */
+        .section { max-width:1400px; margin:0 auto; padding:64px 24px; }
+        .section-header { text-align:center; margin-bottom:40px; }
+        .section-tag { display:inline-block; background:var(--lg-red); color:#fff; padding:5px 14px; border-radius:20px; font-size:0.78rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:14px; border:none; font-family:'DM Sans',sans-serif; }
+        .section-header h2 { font-size:2rem; font-weight:800; color:var(--lg-dark); margin-bottom:10px; letter-spacing:-0.5px; }
+        .section-header p { color:var(--lg-gray); font-size:1rem; max-width:900px; margin:0 auto; white-space:nowrap; }
+
+        /* ── MUST-READ ── */
+        .must-read-section { background:#fff8f9; }
+        .must-read-cards { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:0 auto; align-items:start; }
+        .must-read-card { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:16px; padding:32px 28px; transition:border-color 0.3s; box-shadow:var(--card-shadow); }
+        .must-read-card:hover { border-color:#d0a0a8; }
+        .must-read-card h3 { display:flex; align-items:center; gap:12px; font-size:1.1rem; font-weight:800; color:var(--lg-red); margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid #f0e0e3; }
+        .must-read-card h3 .mr-num { display:inline-flex; width:30px; height:30px; align-items:center; justify-content:center; background:var(--lg-red); border-radius:8px; font-size:0.82rem; font-weight:800; color:#fff; flex-shrink:0; }
+        .survey-item { display:flex; align-items:flex-start; gap:14px; padding:13px 0; border-bottom:1px solid #f5eced; }
+        .survey-item:last-child { border-bottom:none; }
+        .survey-item .survey-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.05rem; flex-shrink:0; margin-top:2px; background:linear-gradient(135deg,#fff0f3,#ffe0e6); border:1px solid #ffc0cc; }
+        .survey-item h4 { font-size:0.92rem; font-weight:700; color:var(--lg-dark); margin-bottom:3px; }
+        .survey-item p { font-size:0.83rem; color:var(--lg-gray); line-height:1.6; }
+        .survey-link-btn { display:inline-flex; align-items:center; gap:8px; margin-top:10px; padding:10px 22px; background:var(--lg-red); color:#fff; font-size:0.85rem; font-weight:700; border-radius:8px; text-decoration:none; transition:all 0.2s; }
+        .survey-link-btn:hover { background:#8a0028; transform:translateY(-1px); box-shadow:0 6px 20px rgba(165,0,52,0.25); }
+
+        /* ── CHECKLIST ── */
+        .checklist-item { display:flex; align-items:flex-start; gap:14px; padding:15px 0; border-bottom:1px solid #f5eced; cursor:pointer; user-select:none; }
+        .checklist-item:last-child { border-bottom:none; }
+        .checklist-item input[type="checkbox"] { display:none; }
+        .checklist-check { width:26px; height:26px; border-radius:7px; border:2px solid var(--lg-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; transition:all 0.2s; font-size:0.85rem; color:transparent; }
+        .checklist-item input:checked ~ .checklist-check { background:var(--lg-red); border-color:var(--lg-red); color:#fff; }
+        .checklist-item input:checked ~ .checklist-content h4 { text-decoration:line-through; color:#bbb; }
+        .checklist-icon { font-size:1.2rem; flex-shrink:0; margin-top:2px; }
+        .checklist-content h4 { font-size:0.92rem; font-weight:700; color:var(--lg-dark); margin-bottom:3px; transition:all 0.2s; }
+        .checklist-content p { font-size:0.83rem; color:var(--lg-gray); line-height:1.6; }
+
+        /* ── NOTICE BANNER ── */
+        .notice-banner { background:#fffbf0; border:1px solid #ffe08a; border-radius:14px; padding:20px 24px; margin-top:32px; display:flex; align-items:center; gap:14px; }
+        .notice-banner .notice-icon { font-size:1.4rem; flex-shrink:0; }
+        .notice-banner p { font-size:0.88rem; color:#7a5c00; }
+        .notice-banner p strong { color:var(--lg-accent); }
+        .notice-banner-alert { background:#fff5f5; border-color:#ffc0c0; }
+        .notice-banner-alert p { color:#7a3040; }
+
+        /* ── DAY CARDS ── */
+        .day-section { background:var(--lg-light); }
+        .day-cards { display:grid; grid-template-columns:1fr; gap:28px; }
+        .day-card { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:16px; overflow:hidden; transition:box-shadow 0.3s; box-shadow:var(--card-shadow); }
+        .day-card:hover { box-shadow:0 8px 32px rgba(0,0,0,0.08); }
+        .day-card-header { padding:28px 28px 22px; position:relative; }
+        .day-card:first-child .day-card-header { background:linear-gradient(135deg,#fff0f3,#ffe0e6); border-bottom:1px solid #ffd0d8; }
+        .day-card:last-child .day-card-header { background:linear-gradient(135deg,#f0ecf8,#f5f0fa); border-bottom:1px solid #e0d8f0; }
+        .day-number { display:inline-flex; align-items:center; gap:8px; font-size:0.78rem; font-weight:700; color:var(--lg-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; font-family:'DM Sans',sans-serif; }
+        .day-card:last-child .day-number { color:#6a4c93; }
+        .day-card-header h3 { font-size:1.35rem; font-weight:800; color:var(--lg-dark); margin-bottom:6px; }
+        .day-card-header p { color:var(--lg-gray); font-size:0.92rem; }
+        .day-card-body { padding:24px 28px 28px; }
+        .activity-list { list-style:none; }
+        .activity-list li { display:flex; align-items:flex-start; gap:14px; padding:13px 0; border-bottom:1px solid #f5eced; }
+        .activity-list li:last-child { border-bottom:none; }
+        .activity-icon { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.88rem; flex-shrink:0; margin-top:2px; background:linear-gradient(135deg,#fff0f3,#ffe0e6); border:1px solid #ffc0cc; }
+        .activity-content h4 { font-size:0.92rem; font-weight:700; color:var(--lg-dark); margin-bottom:2px; }
+        .activity-content p { font-size:0.83rem; color:var(--lg-gray); }
+
+        /* ── TIMETABLE ── */
+.timetable-note {
+    text-align: right;
+    font-size: 0.82rem;
+    color: #999;
+    margin-bottom: -12px;
+}
+        .timetable-section { background:#fff8f9; }
+        .timetable-section .section { padding:64px 24px; }
+        .timetable-wrapper { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+        .tt-table-wrap { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:16px; overflow:hidden; box-shadow:var(--card-shadow); }
+        .tt-table-header { padding:18px 24px; display:flex; align-items:center; justify-content:space-between; }
+        .tt-table-header.day1 { background:linear-gradient(135deg,var(--lg-red),#d42050); }
+        .tt-table-header.day2 { background:linear-gradient(135deg,#1a1a2e,#2d1a2e); }
+        .tt-table-header h3 { font-size:1.05rem; font-weight:800; color:#fff; }
+        .tt-table-header .day-label { font-size:0.78rem; font-weight:700; background:rgba(255,255,255,0.2); padding:4px 14px; border-radius:20px; color:#fff; font-family:'DM Sans',sans-serif; }
+        .tt-table { width:100%; border-collapse:collapse; font-size:0.9rem; table-layout:fixed; }
+        .tt-table thead th { padding:11px 14px; font-size:0.8rem; font-weight:700; color:var(--lg-red); text-transform:uppercase; letter-spacing:0.5px; text-align:left; border-bottom:2px solid #f0e0e3; background:#fef8f9; font-family:'DM Sans',sans-serif; }
+        .tt-table tbody td { padding:12px 14px; border-bottom:1px solid #f5eced; color:#444; vertical-align:top; font-size:0.9rem; line-height:1.5; }
+        .tt-table tbody tr:hover td { background:#fef8f9; }
+        .tt-table tbody td:nth-child(1) { font-weight:700; color:var(--lg-red); font-size:0.86rem; font-family:'DM Sans',sans-serif; }
+        .tt-table-wrap:last-child .tt-table tbody td:nth-child(1) { color:#6a4c93; }
+        .tt-table tbody td:nth-child(2) { color:var(--lg-dark); font-weight:600; }
+        .tt-table tbody td:nth-child(3) { color:var(--lg-gray); font-size:0.86rem; }
+        .tt-table tbody tr.is-break td { color:#b8860b; }
+        .tt-table tbody tr.is-break td:nth-child(2) { font-weight:500; color:#999; }
+        .tt-tag { display:inline-block; padding:2px 8px; border-radius:5px; font-size:0.66rem; font-weight:700; margin-left:6px; vertical-align:middle; font-family:'DM Sans',sans-serif; }
+        .tt-tag-lecture { background:#fff0f3; color:var(--lg-red); border:1px solid #ffd0d8; }
+        .tt-tag-practice { background:#e8f8ee; color:#1a8a4a; border:1px solid #b8e8c8; }
+        .tt-tag-break { background:#f5f5f5; color:#aaa; }
+        .tt-tag-meal { background:#fffbf0; color:#b8860b; border:1px solid #ffe08a; }
+        .tt-tag-reflection { background:#fff0f3; color:var(--lg-accent); border:1px solid #ffd0d8; }
+        .tt-tag-discussion { background:#f0ecf8; color:#6a4c93; border:1px solid #e0d0f0; }
+        .tt-sub { font-size:0.82rem; color:var(--lg-gray); }
+
+        /* ── MAP / VENUE ── */
+        .map-section { background:var(--lg-light); }
+        .map-container { border-radius:16px; overflow:hidden; border:1px solid var(--lg-border); margin-bottom:28px; }
+        .map-container iframe { width:100%; height:380px; border:none; }
+        .venue-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px; }
+        .venue-block { display:flex; flex-direction:column; }
+        .venue-block-title { font-size:0.88rem; font-weight:700; color:var(--lg-dark); margin-bottom:10px; padding-bottom:8px; border-bottom:2px solid var(--lg-red); display:inline-block; }
+        .info-table { width:100%; border-collapse:collapse; border:1px solid var(--lg-border); border-radius:12px; overflow:hidden; flex:1; }
+        .info-table th, .info-table td { padding:12px 16px; font-size:0.88rem; text-align:left; border-bottom:1px solid #f0e8e8; }
+        .info-table th { background:#fef5f6; font-weight:700; color:var(--lg-gray); font-size:0.8rem; letter-spacing:0.04em; width:100px; vertical-align:middle; }
+        .info-table td { color:var(--lg-dark); line-height:1.6; }
+        .info-table tr:last-child th, .info-table tr:last-child td { border-bottom:none; }
+
+        .directions-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+        .direction-card { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:14px; padding:24px 22px; box-shadow:var(--card-shadow); }
+        .direction-card h4 { display:flex; align-items:center; gap:10px; font-size:0.95rem; font-weight:700; color:var(--lg-dark); margin-bottom:14px; }
+        .direction-card h4 .d-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.88rem; background:linear-gradient(135deg,#fff0f3,#ffe0e6); border:1px solid #ffc0cc; }
+        .direction-card p { font-size:0.86rem; color:var(--lg-gray); line-height:1.8; }
+        .direction-card p strong { color:var(--lg-dark); }
+        .notice-text { color:var(--lg-red); font-weight:600; }
+
+        /* ── FAQ ── */
+        .faq-section { background:#fff8f9; }
+        .faq-list { max-width:800px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+        .faq-item { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:12px; overflow:hidden; transition:border-color 0.3s; box-shadow:0 1px 6px rgba(0,0,0,0.03); }
+        .faq-item.open { border-color:#d0a0a8; }
+        .faq-question { padding:18px 22px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none; transition:background 0.2s; }
+        .faq-question:hover { background:#fef8f9; }
+        .faq-question h4 { font-size:0.92rem; font-weight:700; color:var(--lg-dark); display:flex; align-items:center; gap:12px; }
+        .faq-question h4 .q-badge { display:inline-flex; width:24px; height:24px; align-items:center; justify-content:center; background:var(--lg-red); border-radius:6px; font-size:0.72rem; font-weight:800; color:#fff; flex-shrink:0; }
+        .faq-toggle { font-size:1.1rem; color:var(--lg-red); transition:transform 0.3s; flex-shrink:0; }
+        .faq-item.open .faq-toggle { transform:rotate(45deg); }
+        .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+        .faq-answer-inner { padding:0 22px 18px 58px; font-size:0.88rem; color:var(--lg-gray); line-height:1.8; }
+
+        /* ── CONTACT ── */
+        .contact-section { background:#fff8f9; }
+        .contact-grid { max-width:800px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+        .contact-card { background:var(--lg-white); border:1px solid var(--lg-border); border-radius:14px; padding:28px 24px; text-align:center; transition:border-color 0.3s; box-shadow:var(--card-shadow); }
+        .contact-card:hover { border-color:#d0a0a8; }
+        .contact-card .contact-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin:0 auto 14px; background:linear-gradient(135deg,#fff0f3,#ffe0e6); border:1px solid #ffc0cc; }
+        .contact-card h4 { font-size:1rem; font-weight:700; color:var(--lg-dark); margin-bottom:4px; }
+        .contact-card .contact-role { font-size:0.78rem; color:var(--lg-red); font-weight:600; margin-bottom:10px; }
+        .contact-card .contact-info { font-size:0.86rem; color:var(--lg-gray); line-height:1.8; }
+        .contact-card .contact-info a { color:var(--lg-red); text-decoration:none; font-weight:500; }
+        .contact-card .contact-info a:hover { text-decoration:underline; }
+
+        /* ── FOOTER ── */
+        footer { background:var(--lg-dark); color:rgba(255,255,255,0.5); padding:28px 24px; text-align:center; font-size:0.83rem; }
+        footer a { color:#ff8fa3; text-decoration:none; }
+
+        /* ── CONFIRMATION FORM ── */
+        #printArea table { border-collapse:collapse; }
+
+        /* ── RESPONSIVE ── */
+        .tt-mobile-tabs { display:none; }
+
+        @media(max-width:768px){
+            nav ul { display:none }
+
+            /* 가로 스크롤 방지 */
+            html, body { overflow-x:hidden; max-width:100vw; }
+            * { max-width:100%; }
+            img, iframe { max-width:100% !important; }
+
+            /* Base */
+            body { font-size: 15px; }
+
+            /* Hero */
+            header { padding:28px 20px 22px; }
+            .hero h1 { font-size:1.6rem; letter-spacing:-0.3px; }
+            .hero .subtitle { font-size:0.88rem; }
+            .hero-meta { gap:10px; margin-top:14px; }
+            .hero-meta-value { font-size:12px; }
+            .hero-meta-label { font-size:9px; }
+
+            /* Tab bar */
+            .tab-bar-inner { justify-content:flex-start; padding:0 12px; }
+            .tab-item { padding:12px 14px; font-size:0.82rem; }
+            .tab-pc-only { display:none !important; }
+
+            /* Sections */
+            .section { padding:36px 16px; }
+            .section-header h2 { font-size:1.4rem; }
+            .section-header p { font-size:0.86rem; }
+
+            /* Grids → 1열 */
+            .day-cards { grid-template-columns:1fr; }
+            .must-read-cards { grid-template-columns:1fr; }
+            .directions-grid { grid-template-columns:1fr; }
+            .venue-grid { grid-template-columns:1fr; }
+            .contact-grid { grid-template-columns:1fr !important; }
+            .contact-card { padding:14px 16px; text-align:left !important; flex-direction:row !important; align-items:center; gap:12px; display:flex !important; }
+            .contact-card .contact-icon { margin:0 !important; width:36px !important; height:36px !important; flex-shrink:0; font-size:1rem !important; }
+            .contact-card h4 { font-size:0.88rem; }
+            .contact-card .contact-role { font-size:0.72rem; margin-bottom:4px; }
+            .contact-card .contact-info { font-size:0.78rem; word-break:break-all; }
+            div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns:1fr !important; }
+            div[style*="grid-template-columns:repeat(3"] { grid-template-columns:1fr !important; }
+            div[style*="grid-template-columns:repeat(2"] { grid-template-columns:1fr !important; }
+
+            /* 노티스 카드 2개 → 1열 */
+            div[style*="grid-template-columns:1fr 1fr"]:not(.contact-grid) { grid-template-columns:1fr !important; }
+
+            /* Timetable */
+            .timetable-section .section { padding:28px 16px; }
+            .timetable-wrapper { grid-template-columns:1fr !important; }
+            .tt-table-wrap { overflow-x:auto; }
+            .tt-table { min-width:340px; table-layout:auto; font-size:0.8rem; }
+            .tt-table tbody td { padding:8px 10px; }
+            .tt-tag { font-size:0.6rem; padding:1px 5px; }
+
+            /* Mobile timetable tabs */
+            .tt-mobile-tabs {
+                display:flex;
+                border-radius:10px;
+                overflow:hidden;
+                border:1px solid var(--lg-border);
+                margin-bottom:16px;
+            }
+            .tt-mobile-tab {
+                flex:1;
+                padding:11px 0;
+                text-align:center;
+                font-size:0.85rem;
+                font-weight:700;
+                cursor:pointer;
+                background:#f5f5f5;
+                color:var(--lg-gray);
+                border:none;
+                transition:all 0.2s;
+                font-family:'Noto Sans KR',sans-serif;
+            }
+            .tt-mobile-tab.active-day1 { background:var(--lg-red); color:#fff; }
+            .tt-mobile-tab.active-day2 { background:#1a1a2e; color:#fff; }
+            .tt-table-wrap.tt-hidden { display:none; }
+
+            /* FAQ */
+            .faq-answer-inner { padding:0 16px 14px 16px; }
+
+            /* Cards */
+            .must-read-card { padding:20px 16px; }
+
+            /* 창원 배차 모바일 */
+            .bus-btn-desktop { display:none !important; }
+            .bus-btn-mobile { display:grid !important; }
+            .bus-notice { flex-direction:column !important; align-items:flex-start !important; }
+            #confirmation { display:none !important; }
+
+            /* 분반 확인 팝업 */
+            #groupIdInput { font-size:16px !important; }
+            .group-input-row { flex-direction:column !important; }
+            .group-input-row button { width:100% !important; }
+
+            /* 팝업 모달 */
+            #beaconModal > div:last-child,
+            #laptopModal > div:last-child,
+            #groupModal > div:last-child {
+                padding:24px 20px !important;
+                max-height:90vh;
+                width:95% !important;
+            }
+            /* 드로어 모바일 */
+            #centerLifeDrawer, #expenseDrawer { width:100% !important; }
+        }
+        @media print {
+            @page { margin: 10mm; size: A4; }
+            html, body {
+                margin: 0 !important; padding: 0 !important;
+                background: #fff !important;
+                height: auto !important;
+            }
+            body * { visibility: hidden !important; }
+            #printArea, #printArea * { visibility: visible !important; }
+            #printArea {
+                position: absolute !important;
+                left: 0 !important; top: 0 !important;
+                width: 100% !important;
+                padding: 20px !important;
+                background: #fff !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+            }
+            #printArea h2 { font-size: 1.6rem !important; margin-bottom: 20px !important; }
+            #printArea table td, #printArea table th { padding: 10px 14px !important; font-size: 0.85rem !important; }
+            #printArea > div:last-child { margin-top: 20px !important; padding: 14px 18px !important; }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="hero">
+        <div class="hero-text">
+            <h1>'26 리더십 리인벤트 2.0</h1>
+            <p class="subtitle" style="font-size:0.95rem;max-width:780px;">리더가 경영사상을 이해·내재화하여 조직에 전달하고, 리인벤트 실행을 위한 일하는 방식 변화 계획을 수립·추진할 수 있다.</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">기간</span>
+                    <span class="hero-meta-value">1박 2일 · 14시간</span>
+                </div>
+                <div class="hero-divider"></div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">장소</span>
+                    <span class="hero-meta-value">평택 러닝센터</span>
+                </div>
+                <div class="hero-divider"></div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">대상</span>
+                    <span class="hero-meta-value">전사 실/팀장</span>
+                </div>
+                <div class="hero-divider"></div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">차수</span>
+                    <span class="hero-meta-value">2~8차수</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Tab Bar -->
+<div class="tab-bar">
+    <div class="tab-bar-inner">
+        <a href="#education" class="tab-item active">교육 안내</a>
+        <a href="#directions" class="tab-item">찾아오는 길</a>
+        <a href="#confirmation" class="tab-item tab-pc-only">교육참가 확인서</a>
+        <a href="#faq" class="tab-item">FAQ</a>
+        <a href="#contact" class="tab-item">담당자 연락처</a>
+
+        <a href="#" onclick="window.open('https://26lr.netlify.app/reg','_blank'); return false;" class="tab-item" style="color:var(--lg-red);font-weight:700;">📝 사전 설문</a>
+        <a href="#center-life" onclick="openDrawer(); return false;" class="tab-item" style="color:var(--lg-red);font-weight:700;border-bottom:2px solid var(--lg-red);">🏨 러닝센터 생활안내</a>
+    </div>
+</div>
+
+<!-- ===== 교육 안내 ===== -->
+<section class="day-section" id="education">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">Education</div>
+            <h2>과정 안내</h2>
+            
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:0 0 16px;align-items:stretch;">
+            <div style="background:var(--lg-white);border:1px solid var(--lg-border);border-radius:12px;padding:16px 20px;">
+                <div style="font-size:0.76rem;color:var(--lg-red);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:'DM Sans',sans-serif;font-weight:600;">일정</div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span style="font-size:1rem;font-weight:700;color:var(--lg-dark);">8월 ~ 9월</span>
+                    <button onclick="document.getElementById('scheduleModal').style.display='flex'" style="font-size:0.74rem;font-weight:700;color:var(--lg-red);background:#fff0f3;border:1px solid #ffd0d8;border-radius:20px;padding:3px 10px;cursor:pointer;white-space:nowrap;">📅 차수별 일정 확인하기</button>
+                </div>
+            </div>
+            <div style="background:var(--lg-white);border:1px solid var(--lg-border);border-radius:12px;padding:16px 20px;">
+                <div style="font-size:0.76rem;color:var(--lg-red);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:'DM Sans',sans-serif;font-weight:600;">교육 대상</div>
+                <div style="font-size:1rem;font-weight:700;color:var(--lg-dark);">전사 실/팀장</div>
+            </div>
+            <div style="background:var(--lg-white);border:1px solid var(--lg-border);border-radius:12px;padding:16px 20px;">
+                <div style="font-size:0.76rem;color:var(--lg-red);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:'DM Sans',sans-serif;font-weight:600;">장소</div>
+                <div style="font-size:1rem;font-weight:700;color:var(--lg-dark);">평택 러닝센터</div>
+            </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 0;">
+            <div style="background:#fffbf0;border:1px solid #ffe08a;border-radius:14px;padding:18px 20px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                    <span style="font-size:1.2rem;">💻</span>
+                    <strong style="font-size:0.9rem;color:var(--lg-accent);">사내 노트북 준비</strong>
+                </div>
+                <p style="font-size:0.82rem;color:#7a5c00;line-height:1.6;margin-bottom:12px;">사내에서 제공된 노트북이 아닌 개인 소유 PC 지참 시 방문신청을 통해 노트북 정보 기재 후 반입 가능합니다.</p>
+                <button onclick="openLaptopModal()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📎 방문신청 가이드(개인PC)</button>
+            </div>
+            <div style="background:#fffbf0;border:1px solid #ffe08a;border-radius:14px;padding:18px 20px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                    <span style="font-size:1.2rem;">📡</span>
+                    <strong style="font-size:0.9rem;color:var(--lg-accent);">비콘 출결 준비</strong>
+                </div>
+                <p style="font-size:0.82rem;color:#7a5c00;line-height:1.6;margin-bottom:12px;">고용24 가입 및 출결관리 어플 설치 필수. 당일 입·퇴실 시 비콘 출결 체크를 해주세요.</p>
+                <button onclick="openBeaconModal()" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;background:var(--lg-red);color:#fff;font-size:0.78rem;font-weight:700;border:none;border-radius:6px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">📎 출결 가이드</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="map-section" id="directions">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">Location</div>
+            <h2>찾아오는 길</h2>
+            <p>LG전자 평택 러닝센터 (경기도 평택시 진위면 엘지로 222)</p>
+        </div>
+        <div class="venue-grid">
+            <div class="venue-block">
+                <div class="venue-block-title">🏫 강의 장소</div>
+                <table class="info-table">
+                    <tr><th>주소</th><td>경기도 평택시 진위면 엘지로 222</td></tr>
+                    <tr><th>강의실</th><td>러닝센터 나눔관(대강당)<br>러닝센터 채움관(분반 강의장)<br><span class="notice-text">※교육 전일 모바일 명찰에서 확인 가능합니다.</span></td></tr>
+                    <tr><th>주차</th><td>외부 서문 주차장 이용 (내부 주차 불가)</td></tr>
+                    <tr><th>식사</th><td>HOUSE 1958 (모바일 명찰 내 식권 이용)</td></tr>
+                </table>
+            </div>
+            <div class="venue-block">
+                <div class="venue-block-title">🏨 숙소 안내</div>
+                <table class="info-table">
+                    <tr><th>체크인</th><td>입실 당일 오후 1~2시경 숙소 정보 문자 발송</td></tr>
+                    <tr><th>체크아웃</th><td>교육 종료일 오전 8시까지 퇴실 완료<br><span class="notice-text">※ 퇴실 시 개인 짐을 빠짐없이 챙겨 주시기 바랍니다.</span></td></tr>
+                    <tr><th>배정</th><td>1인 1실 원칙</td></tr>
+                    <tr><th>구비물품</th><td>수건 · 드라이어 · 샴푸 · 바디워시 · 세탁기(공용)</td></tr>
+                    <tr><th>문의(24시)</th><td>숙소: 031-8074-5500 · 응급: 031-610-6119</td></tr>
+                </table>
+            </div>
+        </div>
+        <div style="text-align:center;margin-bottom:28px;">
+            <button onclick="openDrawer()" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:var(--lg-red);color:#fff;font-size:0.95rem;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 4px 16px rgba(165,0,52,0.25);transition:all 0.2s;" onmouseover="this.style.background='#8a0028';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--lg-red)';this.style.transform='translateY(0)'">
+                🏨 (필독) 러닝센터 생활안내 보기
+                <span style="font-size:0.85rem;opacity:0.8;">→</span>
+            </button>
+        </div>
+        <!-- 창원 배차 안내 -->
+        <div style="margin-bottom:28px;">
+            <h3 style="font-size:1.2rem;font-weight:700;color:var(--lg-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px;">🚌 창원 배차 안내</h3>
+
+            <!-- 주의사항 -->
+            <div class="notice-banner notice-banner-alert bus-notice" style="margin-top:0;margin-bottom:16px;">
+                <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><span class="notice-icon">⚠️</span><strong style="color:#7a3040;">탑승 시 주의사항</strong></div>
+                    <p style="color:#7a3040;font-size:0.92rem;line-height:1.8;">
+                        1) 창원지역은 사전 입소의 경우에만 배차 진행되며, 당일 입소 원하시는 경우 개별로 이동하셔야 합니다. 그 외 지역 배차 진행되지 않습니다.<br>
+                        2) 미탑승 시 별도로 연락드리지 않으며, 지각 인원에 대한 차량 대기가 어렵습니다. <strong>정시에 출발할 수 있도록 미리 탑승 준비</strong> 부탁드립니다.
+                    </p>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <!-- 입소 -->
+                <div class="direction-card" style="border-left:3px solid var(--lg-red);">
+                    <h4 style="margin-bottom:12px;"><span class="d-icon">🚌</span>입소 (교육 시작 전일) — <span style="color:var(--lg-red);">19:00 출발</span></h4>
+                    <p style="margin-bottom:8px;"><strong>도착지:</strong> 평택 LG디지털파크 러닝센터</p>
+                    <div style="background:#fef5f6;border-radius:8px;padding:12px 14px;font-size:0.92rem;color:var(--lg-dark);line-height:1.9;">
+                        <strong>노선 A</strong><br>
+                        창원 1공장 소라상가 앞 <span style="color:var(--lg-gray);font-size:0.84rem;">(19:00 출발)</span><br>
+                        ↓<br>
+                        창원 2공장 분수대 앞 <span style="color:var(--lg-gray);font-size:0.84rem;">(경유, 19:10 출발)</span><br>
+                        ↓<br>
+                        평택 LG디지털파크 러닝센터 <span style="color:var(--lg-red);font-weight:700;font-size:0.84rem;">(도착)</span>
+                    </div>
+                </div>
+                <!-- 퇴소 -->
+                <div class="direction-card" style="border-left:3px solid #6a4c93;">
+                    <h4 style="margin-bottom:12px;"><span class="d-icon">🚌</span>퇴소 (교육 종료일) — <span style="color:#6a4c93;">15:30 출발</span></h4>
+                    <p style="margin-bottom:8px;"><strong>출발지:</strong> 평택 LG디지털파크 채움관</p>
+                    <div style="background:#f0ecf8;border-radius:8px;padding:12px 14px;font-size:0.92rem;color:var(--lg-dark);line-height:1.9;">
+                        <strong>노선 A</strong><br>
+                        LG디지털파크 채움관 <span style="color:#6a4c93;font-weight:700;font-size:0.84rem;">(15:30 출발)</span><br>
+                        ↓<br>
+                        창원 2공장 분수대 앞 <span style="color:var(--lg-gray);font-size:0.84rem;">(경유)</span><br>
+                        ↓<br>
+                        창원 1공장 소라상가 앞
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== 러닝센터 생활안내 드로어 ===== -->
+
+<div id="centerLifeDrawer" style="position:fixed;top:0;right:-100%;width:50%;height:100vh;background:#fff;z-index:1000;box-shadow:-8px 0 40px rgba(0,0,0,0.15);transition:right 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;">
+    <div style="flex-shrink:0;background:#fff;border-bottom:1px solid var(--lg-border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+            <div style="font-size:0.76rem;color:var(--lg-red);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-family:'DM Sans',sans-serif;margin-bottom:2px;">Center Life</div>
+            <h2 style="font-size:1.1rem;font-weight:800;color:var(--lg-dark);">러닝센터 생활안내</h2>
+        </div>
+        <button onclick="closeDrawer()" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--lg-border);background:#fff;font-size:1.1rem;cursor:pointer;color:var(--lg-gray);">✕</button>
+    </div>
+    <iframe src="https://lgehqex.github.io/learningcenter/" style="flex:1;width:100%;border:none;"></iframe>
+</div>
+<div id="drawerOverlay" onclick="closeDrawer()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:999;"></div>
+
+<!-- ===== 교육참가 확인서 ===== -->
+<section class="map-section" id="confirmation">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">Confirmation</div>
+            <h2>교육참가 확인서</h2>
+            <p>아래 확인서를 출력하여 작성 후, 입소 시 서문 Gate에 제출해 주세요</p>
+        </div>
+        <div style="max-width:700px;margin:0 auto;">
+            <div class="notice-banner" style="margin-top:0;margin-bottom:24px;">
+                <span class="notice-icon">🖨️</span>
+                <p><strong>아래 버튼을 클릭하면 확인서만 별도로 인쇄됩니다.</strong> A4 용지에 출력하여 빈칸을 작성해 주세요.</p>
+            </div>
+            <div id="printArea" style="background:#ffffff;border-radius:14px;padding:48px 40px;color:#111;border:1px solid #e0e0e0;">
+                <p style="text-align:center;font-size:0.78rem;color:#999;margin-bottom:24px;">LGE Internal Use Only</p>
+                <h2 style="text-align:center;font-size:2.2rem;font-weight:900;letter-spacing:14px;color:#1a1a1a;margin-bottom:40px;">교 육 참 가  확 인 서</h2>
+                <table style="width:100%;border-collapse:collapse;margin-bottom:0;">
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;width:30%;text-align:center;color:#333;font-size:0.95rem;">소속 / 사번</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;min-height:48px;"> </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">성명</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;"> </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">연락처</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;"> </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">과정명</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#333;font-weight:500;">'26 리더십 리인벤트 2.0</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">교육기간</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#555;"> </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">장소</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#333;font-weight:500;">평택 LG디지털파크 러닝센터</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#f7f2ec;font-weight:700;text-align:center;color:#333;font-size:0.95rem;">담당자 및 연락처</td>
+                        <td style="padding:16px 20px;border:1px solid #c8c0b0;background:#fff;color:#333;font-weight:500;">이헌정 사원 / 010-2862-8177</td>
+                    </tr>
+                </table>
+                <div style="text-align:center;margin-top:40px;padding-top:28px;">
+                    <p style="font-size:0.95rem;color:#555;line-height:1.8;">러닝센터에서 운영하는 교육과정 참석자임을 확인합니다.</p>
+                    <p style="font-size:1.2rem;font-weight:700;color:#1a1a1a;margin-top:16px;">Employee eXperience담당</p>
+                </div>
+                <div style="margin-top:40px;padding:20px 24px;background:#f7f2ec;border-radius:10px;border-left:4px solid var(--lg-accent);">
+                    <h4 style="font-size:0.9rem;font-weight:800;color:var(--lg-accent);margin-bottom:10px;text-decoration:underline;">출입 Process</h4>
+                    <ul style="list-style:disc;padding-left:20px;font-size:0.85rem;color:#444;line-height:2;">
+                        <li>차량은 서문 Gate 앞 주차장에 주차 후 입소</li>
+                        <li>교육참가 확인서 출력 후 서문 Gate 제출/확인</li>
+                        <li>임직원은 ID Card 체크 후 출입</li>
+                    </ul>
+                    <p style="font-size:0.82rem;color:#666;margin-top:8px;">주소 : 경기 평택시 진위면 엘지로222 LG전자 디지털파크 서문</p>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:24px;">
+                <button onclick="printConfirmation()" style="padding:14px 36px;background:var(--lg-red);color:#fff;font-size:0.95rem;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;">🖨️ 확인서 인쇄하기</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section" id="faq">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">FAQ</div>
+            <h2>FAQ</h2>
+            <p>교육 관련 궁금한 사항을 확인하세요</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4><span class="q-badge">Q</span>1일차 석식만찬 참석 필수인가요?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">네, 리더 간 교류 및 Peer 러닝을 위한 중요한 시간입니다. 사전 일정 조율하시어 참석해 주세요.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4><span class="q-badge">Q</span>숙박 필수인가요?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">1일차 석식 일정이 예정되어 있어 가급적 숙박을 권장드립니다.</div></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4><span class="q-badge">Q</span>개인 차량을 가지고 갈 시, 주차 등록을 따로 해야하나요?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer"><div class="faq-answer-inner">주차 등록 없이 서문 외부 주차장에 주차 가능합니다.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 담당자 연락처 ===== -->
+<section class="contact-section" id="contact">
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">Contact</div>
+            <h2>담당자 연락처</h2>
+            <p>과정 운영으로 유선 연결이 어려운 경우가 많아, 문의하기 버튼을 이용해 주시면 가능한 빠른 회신 드리겠습니다!</p>
+            <div style="margin-top:16px;">
+                <a href="https://26lr.netlify.app/qna" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:var(--lg-red);color:#fff;font-size:0.92rem;font-weight:700;border-radius:12px;text-decoration:none;box-shadow:0 4px 16px rgba(165,0,52,0.25);transition:all 0.2s;" onmouseover="this.style.background='#8a0028';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--lg-red)';this.style.transform='translateY(0)'">
+                    ✉️ 문의하기 →
+                </a>
+            </div>
+        </div>
+        <div style="max-width:900px;margin:0 auto;">
+            <div class="contact-grid" style="grid-template-columns:1fr 1fr;">
+                <div class="contact-card">
+                    <div class="contact-icon">📋</div>
+                    <h4><a href="http://newep.lge.com/support/profile/getProfile.do?targetUserId=@MjM0ODQz#" target="_blank" style="color:var(--lg-dark);text-decoration:none;">최은영 책임</a></h4>
+                    <div class="contact-role">Leadership Development팀 · 과정 관련 문의</div>
+                    <div class="contact-info">
+                        <a href="mailto:ey.choi@lge.com">ey.choi@lge.com</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🏨</div>
+                    <h4>이헌정 사원</h4>
+                    <div class="contact-role">교육서비스센터 · 숙소/출결 등 운영 관련 문의</div>
+                    <div class="contact-info">
+                        <a href="mailto:heonjeong.lee@lgeparter.com">heonjeong.lee@lgeparter.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <p>'26 리더십 리인벤트 2.0 — 변화를 설계하고 구성원의 실행을 이끄는 리더십을 내재화합니다</p>
+    <p style="margin-top:8px;opacity:0.4;">© 2026 LG Electronics | Leadership Development팀. All rights reserved.</p>
+</footer>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            const tbH = document.querySelector('.tab-bar').offsetHeight;
+            window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - tbH, behavior: 'smooth' });
+        }
+    });
+});
+const tabItems = document.querySelectorAll('.tab-item');
+const tabSections = ['education','directions','confirmation','faq','contact'];
+function updateActiveTab() {
+    const tbH = document.querySelector('.tab-bar').offsetHeight + 20;
+    let current = '';
+    tabSections.forEach(id => {
+        const sec = document.getElementById(id);
+        if (sec && sec.getBoundingClientRect().top <= tbH + 100) current = id;
+    });
+    tabItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) item.classList.add('active');
+    });
+}
+window.addEventListener('scroll', updateActiveTab);
+function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f => { f.classList.remove('open'); f.querySelector('.faq-answer').style.maxHeight = null; });
+    if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+}
+function switchTtTab(day) {
+    if (window.innerWidth > 768) return;
+    const day1 = document.getElementById('tt-day1');
+    const day2 = document.getElementById('tt-day2');
+    const tabs = document.querySelectorAll('.tt-mobile-tab');
+    if (day === 1) {
+        day1.classList.remove('tt-hidden');
+        day2.classList.add('tt-hidden');
+        tabs[0].classList.add('active-day1');
+        tabs[0].classList.remove('active-day2');
+        tabs[1].classList.remove('active-day1', 'active-day2');
+    } else {
+        day2.classList.remove('tt-hidden');
+        day1.classList.add('tt-hidden');
+        tabs[1].classList.add('active-day2');
+        tabs[1].classList.remove('active-day1');
+        tabs[0].classList.remove('active-day1', 'active-day2');
+    }
+}
+// 모바일 초기 상태: day2 숨김
+if (window.innerWidth <= 768) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const day2 = document.getElementById('tt-day2');
+        if (day2) day2.classList.add('tt-hidden');
+    });
+}
+function openSurveyHistoryModal() {
+    const m = document.getElementById('surveyHistoryModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+    document.getElementById('surveyHistoryInput').value = '';
+    document.getElementById('surveyHistoryResult').style.display = 'none';
+    setTimeout(() => document.getElementById('surveyHistoryInput').focus(), 100);
+}
+function closeSurveyHistoryModal() {
+    const m = document.getElementById('surveyHistoryModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+async function checkSurveyHistory() {
+    const id = document.getElementById('surveyHistoryInput').value.trim();
+    const result = document.getElementById('surveyHistoryResult');
+    if (!id) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;">사번을 입력해주세요.</div>';
+        return;
+    }
+    result.style.display = 'block';
+    result.innerHTML = '<div style="text-align:center;padding:16px;color:var(--lg-gray);font-size:0.88rem;">조회 중...</div>';
+    try {
+        const url = `https://script.google.com/macros/s/AKfycbxz5bJYgOtxWo0EkN3EmpAHyfcaXFumDICEkyAx2l-Lb_V_uENE3f5iVVGujNKudr2-/exec?action=survey&sano=${encodeURIComponent(id)}`;
+        const res = await fetch(url, { redirect: 'follow' });
+        const data = await res.json();
+        if (data.success) {
+            result.innerHTML = `
+                <div style="background:#fff8f9;border:1.5px solid #1a1a2e;border-radius:12px;padding:20px 22px;text-align:center;">
+                    <div style="font-size:0.82rem;color:var(--lg-gray);margin-bottom:8px;">조회 결과</div>
+                    <div style="font-size:1.1rem;font-weight:800;color:var(--lg-dark);margin-bottom:14px;">${data.name} 님</div>
+                    <div style="display:grid;grid-template-columns:1fr;gap:10px;">
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+                            <div style="font-size:0.82rem;color:var(--lg-gray);white-space:nowrap;">📅 신청 차수</div>
+                            <div style="font-size:1rem;font-weight:700;color:#1a1a2e;text-align:right;">${data.round || '-'}</div>
+                        </div>
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+                            <div style="font-size:0.82rem;color:var(--lg-gray);white-space:nowrap;">🏨 숙소 신청</div>
+                            <div style="font-size:1rem;font-weight:700;color:#1a1a2e;text-align:right;">${data.accommodation || '-'}</div>
+                        </div>
+                        <div style="text-align:right;margin-top:6px;">
+                            <span style="font-size:0.75rem;color:#bbb;">답변 일시 · ${data.date || '-'}</span>
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            result.innerHTML = `<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">${data.message || '일치하는 사번을 찾을 수 없습니다.'}<br>사번을 다시 확인해주세요.</div>`;
+        }
+    } catch(e) {
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">조회 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+    }
+}
+function openGroupModal() {
+    const m = document.getElementById('groupModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+    document.getElementById('groupIdInput').value = '';
+    document.getElementById('groupResult').style.display = 'none';
+    setTimeout(() => document.getElementById('groupIdInput').focus(), 100);
+}
+function closeGroupModal() {
+    const m = document.getElementById('groupModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+async function checkGroup() {
+    const id = document.getElementById('groupIdInput').value.trim();
+    const result = document.getElementById('groupResult');
+    if (!id) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;">사번을 입력해주세요.</div>';
+        return;
+    }
+    result.style.display = 'block';
+    result.innerHTML = '<div style="text-align:center;padding:16px;color:var(--lg-gray);font-size:0.88rem;">조회 중...</div>';
+    try {
+        const url = `https://script.google.com/macros/s/AKfycbzismM6BEC-YdDN8jltZK1NT1G7ztO3edi7pzn6Tm4zbhs1DqDyY7X7_yncWOK97tgd/exec?action=lookup&sano=${encodeURIComponent(id)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.success && data.data && data.data.length > 0) {
+            const d = data.data[0];
+            result.innerHTML = `
+                <div style="background:#fff8f9;border:1.5px solid var(--lg-red);border-radius:12px;padding:20px 22px;text-align:center;">
+                    <div style="font-size:0.82rem;color:var(--lg-gray);margin-bottom:8px;">조회 결과</div>
+                    <div style="font-size:1.2rem;font-weight:800;color:var(--lg-dark);margin-bottom:12px;">${d.name} 님</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:8px;padding:10px 8px;">
+                            <div style="font-size:0.7rem;color:var(--lg-gray);margin-bottom:3px;">차수</div>
+                            <div style="font-size:0.95rem;font-weight:700;color:var(--lg-red);">${d.round}</div>
+                        </div>
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:8px;padding:10px 8px;">
+                            <div style="font-size:0.7rem;color:var(--lg-gray);margin-bottom:3px;">반</div>
+                            <div style="font-size:0.95rem;font-weight:700;color:var(--lg-red);">${d.ban}</div>
+                        </div>
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:8px;padding:10px 8px;">
+                            <div style="font-size:0.7rem;color:var(--lg-gray);margin-bottom:3px;">팀</div>
+                            <div style="font-size:0.95rem;font-weight:700;color:var(--lg-red);">${d.team}</div>
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            result.innerHTML = `<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">${data.message || '일치하는 사번을 찾을 수 없습니다.'}<br>사번을 다시 확인해주세요.</div>`;
+        }
+    } catch(e) {
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">조회 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+    }
+}
+function openBusCheckModal() {
+    const m = document.getElementById('busCheckModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+    document.getElementById('busCheckInput').value = '';
+    document.getElementById('busCheckResult').style.display = 'none';
+    setTimeout(() => document.getElementById('busCheckInput').focus(), 100);
+}
+function closeBusCheckModal() {
+    const m = document.getElementById('busCheckModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+async function checkBusReservation() {
+    const id = document.getElementById('busCheckInput').value.trim();
+    const result = document.getElementById('busCheckResult');
+    if (!id) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;">사번을 입력해주세요.</div>';
+        return;
+    }
+    result.style.display = 'block';
+    result.innerHTML = '<div style="text-align:center;padding:16px;color:var(--lg-gray);font-size:0.88rem;">조회 중...</div>';
+    try {
+        const url = `https://script.google.com/macros/s/AKfycbyGnXdnCvMOfpKTVUkbpK5y1ViI9Lu49MHgm7nAWkXpWM2HK7ubMbPenxA9M42KehniAQ/exec?action=bus&sano=${encodeURIComponent(id)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.success) {
+            result.innerHTML = `
+                <div style="background:#fff8f9;border:1.5px solid var(--lg-red);border-radius:12px;padding:20px 22px;">
+                    <div style="font-size:0.82rem;color:var(--lg-gray);margin-bottom:8px;text-align:center;">조회 결과</div>
+                    <div style="font-size:1.1rem;font-weight:800;color:var(--lg-dark);margin-bottom:14px;text-align:center;">${data.name} 님 · ${data.round}</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 12px;">
+                            <div style="font-size:0.72rem;color:var(--lg-gray);margin-bottom:4px;">🚌 입소 방법</div>
+                            <div style="font-size:0.95rem;font-weight:700;color:var(--lg-red);">${data.inMethod || '-'}</div>
+                        </div>
+                        <div style="background:#fff;border:1px solid var(--lg-border);border-radius:10px;padding:14px 12px;">
+                            <div style="font-size:0.72rem;color:var(--lg-gray);margin-bottom:4px;">🏠 퇴소 방법</div>
+                            <div style="font-size:0.95rem;font-weight:700;color:#1a1a2e;">${data.outMethod || '-'}</div>
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            result.innerHTML = `<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">${data.message || '대상자가 아닙니다.'}</div>`;
+        }
+    } catch(e) {
+        result.innerHTML = '<div style="background:#fff5f5;border:1px solid #ffc0c0;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#c0392b;text-align:center;">조회 중 오류가 발생했습니다.<br>잠시 후 다시 시도해주세요.</div>';
+    }
+}
+function openBusModal() {
+    const m = document.getElementById('busModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+}
+function closeBusModal() {
+    const m = document.getElementById('busModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+function openLaptopModal() {
+    const m = document.getElementById('laptopModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+}
+function closeLaptopModal() {
+    const m = document.getElementById('laptopModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+function openBeaconModal() {
+    const m = document.getElementById('beaconModal');
+    m.style.visibility = 'visible';
+    m.style.opacity = '1';
+}
+function closeBeaconModal() {
+    const m = document.getElementById('beaconModal');
+    m.style.visibility = 'hidden';
+    m.style.opacity = '0';
+}
+
+function window.open('https://26lr.netlify.app/reg','_blank') {
+    if (window.innerWidth < 768) {
+        window.open('https://surveyl.ink/BBOoz2', '_blank');
+        return;
+    }
+    document.getElementById('surveyDrawer').style.right = '0';
+    document.getElementById('surveyOverlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+function closeSurveyDrawer() {
+    document.getElementById('surveyDrawer').style.right = '-100%';
+    document.getElementById('surveyOverlay').style.display = 'none';
+    document.body.style.overflow = '';
+}
+function openDrawer() {
+    if (window.innerWidth < 768) {
+        window.open('https://lgehqex.github.io/learningcenter/', '_blank');
+        return;
+    }
+    document.getElementById('centerLifeDrawer').style.right = '0';
+    document.getElementById('drawerOverlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+    document.getElementById('centerLifeDrawer').style.right = '-100%';
+    document.getElementById('drawerOverlay').style.display = 'none';
+    document.body.style.overflow = '';
+}
+function printConfirmation() {
+    const content = document.getElementById('printArea').innerHTML;
+    const win = window.open('', '_blank', 'width=800,height=900');
+    win.document.write(`<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
+  @page { margin: 15mm; size: A4; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR',sans-serif; color:#111; background:#fff; padding:20px; }
+  table { width:100%; border-collapse:collapse; }
+  td { padding:13px 18px; border:1px solid #c8c0b0; font-size:0.9rem; line-height:1.6; }
+</style>
+</head><body>${content}
+<!-- ===== 차수별 일정 팝업 ===== -->
+<div id="scheduleModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1100;align-items:center;justify-content:center;">
+    <div onclick="document.getElementById('scheduleModal').style.display='none'" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);"></div>
+    <div style="position:relative;background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <button onclick="document.getElementById('scheduleModal').style.display='none'" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;font-size:1rem;cursor:pointer;color:#666;">✕</button>
+        <div style="display:inline-block;background:linear-gradient(135deg,#1a1a1a,#2d0012);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;margin-bottom:14px;font-family:'DM Sans',sans-serif;">📅 차수별 일정</div>
+        <h3 style="font-size:1.15rem;font-weight:800;color:var(--lg-dark);margin-bottom:4px;">'26 리더십 리인벤트 2.0</h3>
+        <p style="font-size:0.82rem;color:var(--lg-gray);margin-bottom:20px;">1박 2일 · 평택 러닝센터</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="background:#f8f4f5;">
+                <th style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-dark);border-bottom:2px solid #e8d0d4;width:30%;">차수</th>
+                <th style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-dark);border-bottom:2px solid #e8d0d4;">일정</th>
+            </tr></thead>
+            <tbody>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">2차</td><td style="padding:10px 16px;text-align:center;">8월 20일(목) ~ 8월 21일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">3차</td><td style="padding:10px 16px;text-align:center;">8월 25일(화) ~ 8월 26일(수)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">4차</td><td style="padding:10px 16px;text-align:center;">8월 27일(목) ~ 8월 28일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">5차</td><td style="padding:10px 16px;text-align:center;">9월 1일(화) ~ 9월 2일(수)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">6차</td><td style="padding:10px 16px;text-align:center;">9월 3일(목) ~ 9월 4일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">7차</td><td style="padding:10px 16px;text-align:center;">9월 8일(화) ~ 9월 9일(수)</td></tr>
+                <tr><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">8차</td><td style="padding:10px 16px;text-align:center;">9월 10일(목) ~ 9월 11일(금)</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size:0.76rem;color:var(--lg-gray);margin-top:12px;text-align:center;">※ 세부 일정은 차수별로 안내드립니다</p>
+    </div>
+</div>
+</body></html>`);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); win.close(); }, 500);
+}
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.day-card,.tt-table-wrap,.direction-card,.faq-item,.contact-card,.must-read-card,.venue-block').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.6s ease,transform 0.6s ease'; observer.observe(el);
+});
+</script>
+
+<!-- ===== 차수별 일정 팝업 ===== -->
+<div id="scheduleModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1100;align-items:center;justify-content:center;">
+    <div onclick="document.getElementById('scheduleModal').style.display='none'" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);"></div>
+    <div style="position:relative;background:#fff;border-radius:20px;padding:36px 32px;max-width:440px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <button onclick="document.getElementById('scheduleModal').style.display='none'" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;font-size:1rem;cursor:pointer;color:#666;">✕</button>
+        <div style="display:inline-block;background:linear-gradient(135deg,#1a1a1a,#2d0012);color:#fff;padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;margin-bottom:14px;font-family:'DM Sans',sans-serif;">📅 차수별 일정</div>
+        <h3 style="font-size:1.15rem;font-weight:800;color:var(--lg-dark);margin-bottom:4px;">'26 리더십 리인벤트 2.0</h3>
+        <p style="font-size:0.82rem;color:var(--lg-gray);margin-bottom:20px;">1박 2일 · 평택 러닝센터</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <thead><tr style="background:#f8f4f5;">
+                <th style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-dark);border-bottom:2px solid #e8d0d4;width:30%;">차수</th>
+                <th style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-dark);border-bottom:2px solid #e8d0d4;">일정</th>
+            </tr></thead>
+            <tbody>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">2차</td><td style="padding:10px 16px;text-align:center;">8월 20일(목) ~ 8월 21일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">3차</td><td style="padding:10px 16px;text-align:center;">8월 25일(화) ~ 8월 26일(수)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">4차</td><td style="padding:10px 16px;text-align:center;">8월 27일(목) ~ 8월 28일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">5차</td><td style="padding:10px 16px;text-align:center;">9월 1일(화) ~ 9월 2일(수)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">6차</td><td style="padding:10px 16px;text-align:center;">9월 3일(목) ~ 9월 4일(금)</td></tr>
+                <tr style="border-bottom:1px solid #f0e8e8;background:#fafafa;"><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">7차</td><td style="padding:10px 16px;text-align:center;">9월 8일(화) ~ 9월 9일(수)</td></tr>
+                <tr><td style="padding:10px 16px;text-align:center;font-weight:700;color:var(--lg-red);">8차</td><td style="padding:10px 16px;text-align:center;">9월 10일(목) ~ 9월 11일(금)</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size:0.76rem;color:var(--lg-gray);margin-top:12px;text-align:center;">※ 세부 일정은 차수별로 안내드립니다</p>
+    </div>
+</div>
+</body>
+</html>
+<!-- ===== 노트북 반입 팝업 ===== -->
+<div id="laptopModal" style="visibility:hidden;opacity:0;transition:opacity 0.2s;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1100;display:flex;align-items:center;justify-content:center;">
+    <div onclick="closeLaptopModal()" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);"></div>
+    <div style="position:relative;background:#fff;border-radius:20px;padding:36px 32px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <button onclick="closeLaptopModal()" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;font-size:1rem;cursor:pointer;color:#666;">✕</button>
+        <div style="display:inline-block;background:var(--lg-red);color:#fff;padding:4px 12px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;margin-bottom:12px;font-family:'DM Sans',sans-serif;">💻 개인 노트북 반입 안내</div>
+        <h3 style="font-size:1.2rem;font-weight:800;color:var(--lg-dark);margin-bottom:16px;">방문신청 및 노트북 반입 가이드</h3>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:10px;">
+            <a href="https://lgehqex.github.io/information/guide_visitor.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--lg-red);color:#fff;font-size:0.84rem;font-weight:700;border-radius:8px;text-decoration:none;">📎 새 창으로 보기 →</a>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;border:1px solid #e8e0e0;">
+            <iframe src="https://docs.google.com/viewer?url=https://lgehqex.github.io/information/guide_visitor.pdf&embedded=true" style="width:100%;height:440px;border:none;"></iframe>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===== 비콘 출결 팝업 ===== -->
+<div id="beaconModal" style="visibility:hidden;opacity:0;transition:opacity 0.2s;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1100;display:flex;align-items:center;justify-content:center;">
+    <div onclick="closeBeaconModal()" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);"></div>
+    <div style="position:relative;background:#fff;border-radius:20px;padding:36px 32px;max-width:680px;width:90%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.2);">
+        <button onclick="closeBeaconModal()" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;font-size:1rem;cursor:pointer;color:#666;">✕</button>
+
+        <div style="display:inline-block;background:var(--lg-red);color:#fff;padding:4px 12px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;margin-bottom:12px;font-family:'DM Sans',sans-serif;">📋 교육 사전 준비</div>
+        <h3 style="font-size:1.2rem;font-weight:800;color:var(--lg-dark);margin-bottom:4px;">① 출결 안내</h3>
+        <p style="font-size:0.88rem;color:var(--lg-red);font-weight:700;margin-bottom:24px;">· 비콘 출결 준비 필수</p>
+
+        <!-- 고용24 -->
+        <div style="border:1px solid #e8e0e0;border-radius:14px;padding:22px 20px;margin-bottom:16px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                <span style="font-size:1.6rem;">💻</span>
+                <h4 style="font-size:1rem;font-weight:800;color:var(--lg-dark);">고용24 가입 및 어플 설치</h4>
+            </div>
+            <p style="font-size:0.86rem;color:var(--lg-gray);margin-bottom:14px;line-height:1.7;">교육참가 전 <strong>고용24 회원 가입</strong> 및 <strong>출결관리 어플</strong>을 다운로드 완료해주세요.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ① <a href="https://www.work24.go.kr" target="_blank" style="color:var(--lg-red);font-weight:600;">고용24 (https://www.work24.go.kr)</a> 개인회원 가입
+                </div>
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ② 회원가입 후 즉시 <strong>실명인증</strong> 진행
+                </div>
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ③ <strong>고용24 직업훈련 출결관리</strong> 어플 설치 후 로그인 확인
+                </div>
+            </div>
+        </div>
+
+        <!-- 비콘 출결 -->
+        <div style="border:1px solid #e8e0e0;border-radius:14px;padding:22px 20px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                <span style="font-size:1.6rem;">📡</span>
+                <h4 style="font-size:1rem;font-weight:800;color:var(--lg-dark);">교육당일 비콘(Beacon) 출결 안내</h4>
+            </div>
+            <p style="font-size:0.86rem;color:var(--lg-gray);margin-bottom:14px;line-height:1.7;">교육장 입·퇴실 시 <strong>고용24 직업훈련 출결관리</strong> 어플을 통해 반드시 입실·퇴실 체크를 해주세요.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ① 어플 실행 후 <strong>비콘 출결</strong> 클릭
+                </div>
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ② <strong>입실(퇴실)</strong> 버튼 클릭
+                </div>
+                <div style="background:#f7f7f7;border-radius:8px;padding:12px 16px;font-size:0.86rem;color:var(--lg-dark);line-height:1.6;">
+                    ③ 입실(퇴실) 시간 확인 후 어플 종료
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="https://lgehqex.github.io/information/guide_beacon.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:#6a4c93;color:#fff;font-size:0.88rem;font-weight:700;border-radius:8px;text-decoration:none;">📎 출결 가이드 새 창으로 보기 →</a>
+            </div>
+            <div style="margin-top:16px;border-radius:10px;overflow:hidden;border:1px solid #e8e0e0;">
+                <iframe src="https://docs.google.com/viewer?url=https://lgehqex.github.io/information/guide_beacon.pdf&embedded=true" style="width:100%;height:500px;border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
