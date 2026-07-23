@@ -1633,12 +1633,13 @@
       `${today.getFullYear()}년 ${today.getMonth()+1}월 ${today.getDate()}일`;
 
     // 캡처용 div에도 정보 세팅
-    document.getElementById('capSano').textContent   = d.sano || '';
-    document.getElementById('capDept').textContent   = d.dept || '';
-    document.getElementById('capName').textContent   = d.name || '';
-    document.getElementById('capName2').textContent  = d.name || '';
-    document.getElementById('capPeriod').textContent = periodStr;
-    document.getElementById('capDate').textContent   = `${today.getFullYear()}년  ${today.getMonth()+1}월     ${today.getDate()}일`;
+    const _set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+    _set('capSano',   d.sano || '');
+    _set('capDept',   d.dept || '');
+    _set('capName',   d.name || '');
+    _set('capName2',  d.name || '');
+    _set('capPeriod', periodStr);
+    _set('capDate',   `${today.getFullYear()}년  ${today.getMonth()+1}월  ${today.getDate()}일`);
 
     document.getElementById('securityOverlay').classList.add('open');
 
